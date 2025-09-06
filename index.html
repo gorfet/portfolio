@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dave Postrero - IT Student</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
@@ -1386,7 +1387,120 @@
 
       // Download resume
       function downloadResume() {
-        alert("Resume download would start here! This is a demo version.");
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(18);
+        doc.text("Dave Postrero", 20, 20);
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.text("Silay City, Negros Occidental, Philippines", 20, 30);
+        doc.text("Email: postrero63@email.com", 20, 36);
+        doc.text("LinkedIn: linkedin.com/in/davepostrero", 20, 42);
+        doc.text("GitHub: github.com/gorfet", 20, 48);
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text("Professional Summary", 20, 60);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.text(
+          "Passionate IT student exploring the endless possibilities of technology, from web development to cybersecurity and beyond. Experienced in building full-stack applications, with a strong foundation in security and cloud technologies.",
+          20,
+          68,
+          { maxWidth: 170 }
+        );
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text("Education", 20, 90);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.text("Bachelor of Science in Information Technology", 20, 98);
+        doc.text("STIWNU, 2022 – 2026 (Expected)", 20, 104);
+        doc.text("GPA: 3.8/4.0 | Dean’s List", 20, 110);
+        doc.text(
+          "Relevant Coursework: Data Structures, Database Management, Network Security, Web Development, Software Engineering",
+          20,
+          116,
+          { maxWidth: 170 }
+        );
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text("Certifications", 20, 130);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.text("- CompTIA Security+ (In Progress, Expected 2024)", 20, 138);
+        doc.text("- AWS Cloud Practitioner (Planned 2024)", 20, 144);
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text("Technical Skills", 20, 158);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.text(
+          "Frontend: HTML5, CSS3, JavaScript, React, Tailwind CSS",
+          20,
+          166
+        );
+        doc.text("Backend: Node.js, Python, Express.js, RESTful APIs", 20, 172);
+        doc.text("Database: MySQL, MongoDB, PostgreSQL", 20, 178);
+        doc.text(
+          "Security: Network Security, Penetration Testing, Risk Assessment, OWASP",
+          20,
+          184
+        );
+        doc.text(
+          "Cloud & DevOps: AWS (Learning), Linux, CI/CD Basics, Agile/Scrum",
+          20,
+          190
+        );
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text("Projects", 20, 204);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.text(
+          "E-Commerce Platform: Full-stack web application with user authentication, payment integration, and admin dashboard. (React, Node.js, MongoDB, Stripe API)",
+          20,
+          212,
+          { maxWidth: 170 }
+        );
+        doc.text(
+          "Student Management System: Database-driven app for managing student records, grades, and course enrollment. (Python, Django, PostgreSQL, Bootstrap)",
+          20,
+          224,
+          { maxWidth: 170 }
+        );
+        doc.text(
+          "Network Security Audit Tool: Python-based tool for identifying network vulnerabilities, with automated reporting. (Python, Nmap, Scapy, Tkinter)",
+          20,
+          236,
+          { maxWidth: 170 }
+        );
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text("Location & Availability", 20, 250);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.text(
+          "Based in Silay City, Negros Occidental, Philippines (GMT+8)",
+          20,
+          258
+        );
+        doc.text(
+          "Open to on-site (Metro Manila), remote, and hybrid opportunities",
+          20,
+          264
+        );
+        doc.text("Willing to relocate for the right opportunity", 20, 270);
+
+        doc.save("Dave-Postrero-Resume.pdf");
       }
 
       // Initialize everything
