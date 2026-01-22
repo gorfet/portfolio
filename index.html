@@ -4,15 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dave Postrero - IT Student</title>
-    <meta name="description" content="Dave Postrero – IT student & developer portfolio showcasing web, mobile, and cybersecurity projects.">
+    <meta
+      name="description"
+      content="Dave Postrero – IT student & developer portfolio showcasing web, mobile, and cybersecurity projects."
+    />
 
-<meta property="og:title" content="Dave Postrero | IT Student & Developer">
-<meta property="og:description" content="Personal portfolio featuring modern web & mobile projects.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://your-portfolio-link.com">
-<meta property="og:image" content="https://your-portfolio-link.com/preview.png">
+    <meta
+      property="og:title"
+      content="Dave Postrero | IT Student & Developer"
+    />
+    <meta
+      property="og:description"
+      content="Personal portfolio featuring modern web & mobile projects."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://your-portfolio-link.com" />
+    <meta
+      property="og:image"
+      content="https://your-portfolio-link.com/preview.png"
+    />
 
-<meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="summary_large_image" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -21,6 +33,47 @@
 
       * {
         font-family: "Inter", sans-serif;
+      }
+
+      .tooltip {
+        position: relative;
+      }
+
+      .tooltip::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 130%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #111827;
+        color: #fff;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .tooltip::before {
+        content: "";
+        position: absolute;
+        bottom: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 6px;
+        border-style: solid;
+        border-color: #111827 transparent transparent transparent;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+
+      .tooltip:hover::after,
+      .tooltip:hover::before {
+        opacity: 1;
       }
 
       .gradient-bg {
@@ -465,8 +518,11 @@
         <div class="p-4 border-t border-gray-100">
           <div class="flex justify-center space-x-4 mb-3">
             <a
-              href="#"
-              class="text-gray-400 hover:text-indigo-600 transition-colors"
+              href="https://www.linkedin.com/in/dave-postrero-2840493a8"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-tooltip="LinkedIn"
+              class="tooltip text-gray-400 hover:text-indigo-600 transition-colors"
             >
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -475,8 +531,11 @@
               </svg>
             </a>
             <a
-              href="#"
-              class="text-gray-400 hover:text-indigo-600 transition-colors"
+              href="https://github.com/gorfet"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-tooltip="GitHub"
+              class="tooltip text-gray-400 hover:text-indigo-600 transition-colors"
             >
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -486,7 +545,8 @@
             </a>
             <button
               onclick="toggleTheme()"
-              class="text-gray-400 hover:text-indigo-600 transition-colors"
+              data-tooltip="Dark Mode"
+              class="tooltip hover:text-indigo-600 transition-colors"
             >
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -859,13 +919,15 @@
                 <span class="text-gray-500">Duration: 2 months</span>
                 <button
                   class="text-indigo-600 hover:text-indigo-800 font-medium"
-                  onclick="openModal(
-                    'Student Habit Tracker Mobile App',
-                    'Mobile habit tracking application with authentication, analytics, and smart reminders for students.',
-                    'React • React Native • Firebase Auth • Firebase Database',
-                    'https://expo.dev/accounts/gorfet/projects/StudentHabitTracker/builds/7b31d6a3-338e-4767-83c9-db620faec987',
-                    'https://github.com/gorfet/student-habit-tracker'
-                  )"
+                  onclick="
+                    openModal(
+                      'Student Habit Tracker Mobile App',
+                      'Mobile habit tracking application with authentication, analytics, and smart reminders for students.',
+                      'React • React Native • Firebase Auth • Firebase Database',
+                      'https://expo.dev/accounts/gorfet/projects/StudentHabitTracker/builds/7b31d6a3-338e-4767-83c9-db620faec987',
+                      'https://github.com/gorfet/student-habit-tracker',
+                    )
+                  "
                 >
                   View Details →
                 </button>
@@ -1039,27 +1101,28 @@
 
       // Fade in animation
       function observeElements() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        entry.target
-          .querySelectorAll(".skill-bar")
-          .forEach((bar) => bar.classList.add("animate"));
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              entry.target
+                .querySelectorAll(".skill-bar")
+                .forEach((bar) => bar.classList.add("animate"));
+            }
+          });
+        });
+
+        document
+          .querySelectorAll(".fade-in")
+          .forEach((el) => observer.observe(el));
       }
-    });
-  });
-
-  document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
-}
-document.addEventListener("DOMContentLoaded", () => {
-  if (!window.typingStarted) {
-    window.typingStarted = true;
-    typeText();
-  }
-  observeElements();
-});
-
+      document.addEventListener("DOMContentLoaded", () => {
+        if (!window.typingStarted) {
+          window.typingStarted = true;
+          typeText();
+        }
+        observeElements();
+      });
 
       // Sidebar toggle functions
       function toggleSidebar() {
@@ -1301,7 +1364,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("projectModal").addEventListener("click", (e) => {
         if (e.target.id === "projectModal") closeModal();
       });
-
     </script>
 
     <!-- Project Modal -->
