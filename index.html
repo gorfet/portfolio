@@ -893,16 +893,16 @@
                 Student Habit Tracker Mobile App
               </h3>
               <p class="text-gray-600 mb-3 text-sm leading-relaxed">
-                Mobile application with user authentication, analytics,
-                smart reminders, progression chart, Achievements, and habit
-                tracking, calendar integration, and admin dashboard. Built 
-                with modern technologies and responsive design.
+                Habit tracking mobile app with authentication, smart reminders,
+                analytics, progression charts, achievements, calendar
+                integration, and an admin dashboard for managing users and
+                activity. Built with a clean, responsive UI.
               </p>
               <div class="flex flex-wrap gap-2 mb-3">
                 <span
                   class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs"
                   >React</span
-                >             
+                >
                 <span
                   class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs"
                   >react-native</span
@@ -949,9 +949,11 @@
                 Maze Runner
               </h3>
               <p class="text-gray-600 mb-3 text-sm leading-relaxed">
-                Web-based maze game where players navigate through
-                procedurally generated mazes, overcoming obstacles.
+                Web-based maze game featuring procedurally generated mazes,
+                smooth controls, and obstacle navigation. Focused on responsive
+                layout and interactive gameplay.
               </p>
+
               <div class="flex flex-wrap gap-2 mb-3">
                 <span
                   class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs"
@@ -964,7 +966,7 @@
                 <span
                   class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs"
                   >JavaScript</span
-                >               
+                >
               </div>
               <div class="flex justify-between items-center text-sm">
                 <span class="text-gray-500">Duration: 1 month</span>
@@ -999,13 +1001,16 @@
                 Battle Shapes
               </h3>
               <p class="text-gray-600 mb-3 text-sm leading-relaxed">
-                
+                Arena-style desktop game where players control geometric shapes
+                and battle in real time. Built with Pygame with collision
+                handling, movement, and game loop logic.
               </p>
+
               <div class="flex flex-wrap gap-2 mb-3">
                 <span
                   class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs"
                   >Pygame</span
-                >               
+                >
               </div>
               <div class="flex justify-between items-center text-sm">
                 <span class="text-gray-500">Duration: 2 months</span>
@@ -1013,9 +1018,9 @@
                   class="text-indigo-600 hover:text-indigo-800 font-medium"
                   onclick="
                     openModal(
-                      'Maze Runner',
-                      'Web-based maze game where players navigate through procedurally generated mazes overcoming obstacles',
-                      'HTML5 • Tailwindcss • JavaScript',
+                      'Battle Shapes',
+                      'Arena-style desktop game where players control geometric shapes and battle in real time. Built with Pygame with collision handling, movement, and game loop logic.',
+                      'Python • Pygame',
                       'https://gorfet.github.io/battle/',
                       'https://github.com/gorfet/battle',
                     )
@@ -1308,79 +1313,175 @@
       // Download resume
       function downloadResume() {
         const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
+        const doc = new jsPDF({ unit: "mm", format: "a4" });
 
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(18);
-        doc.text("Dave Postrero", 20, 20);
+        // Layout
+        const marginX = 18;
+        const marginTop = 18;
+        const marginBottom = 16;
 
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(11);
-        doc.text("Silay City, Negros Occidental, Philippines", 20, 30);
-        doc.text("Email: postrero63@email.com", 20, 36);
-        doc.text("LinkedIn: linkedin.com/in/davepostrero", 20, 42);
-        doc.text("GitHub: github.com/gorfet", 20, 48);
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const pageHeight = doc.internal.pageSize.getHeight();
+        const maxWidth = pageWidth - marginX * 2;
 
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(14);
-        doc.text("Professional Summary", 20, 60);
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(11);
-        doc.text(
-          "Passionate IT student exploring the endless possibilities of technology, from web development to cybersecurity and beyond. Experienced in building full-stack applications, with a strong foundation in security and cloud technologies.",
-          20,
-          68,
-          { maxWidth: 170 },
+        let y = marginTop;
+
+        // Readability spacing
+        const GAP_LINE = 6;
+        const GAP_WRAP = 6;
+        const GAP_BULLET = 6;
+
+        // Helpers
+        function newPageIfNeeded(space = 0) {
+          if (y + space > pageHeight - marginBottom) {
+            doc.addPage();
+            y = marginTop;
+          }
+        }
+
+        function fontRegular(size = 11) {
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(size);
+        }
+
+        function fontBold(size = 11) {
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(size);
+        }
+
+        function divider() {
+          newPageIfNeeded(6);
+          doc.setDrawColor(0);
+          doc.setLineWidth(0.35);
+          doc.line(marginX, y, pageWidth - marginX, y);
+          y += 5;
+        }
+
+        function line(text, opts = {}) {
+          const { bold = false, size = 11, gap = GAP_LINE } = opts;
+          newPageIfNeeded(gap);
+          bold ? fontBold(size) : fontRegular(size);
+          doc.text(text, marginX, y);
+          y += gap;
+        }
+
+        function wrap(text, opts = {}) {
+          const { bold = false, size = 11, gap = GAP_WRAP } = opts;
+          bold ? fontBold(size) : fontRegular(size);
+
+          const lines = doc.splitTextToSize(text, maxWidth);
+          const height = lines.length * gap;
+
+          newPageIfNeeded(height + 2);
+          doc.text(lines, marginX, y);
+          y += height;
+        }
+
+        function section(title) {
+          newPageIfNeeded(18);
+          y += 6;
+          fontBold(12.5);
+          doc.text(title.toUpperCase(), marginX, y);
+          y += 5;
+          divider();
+          y += 2;
+        }
+
+        function bullet(text) {
+          wrap(`- ${text}`, { size: 11, gap: GAP_BULLET });
+        }
+
+        function gap(mm = 4) {
+          newPageIfNeeded(mm);
+          y += mm;
+        }
+
+        // Header
+        fontBold(18);
+        doc.text("Dave Postrero", marginX, y);
+        y += 9;
+
+        fontRegular(11);
+        line("Silay City, Negros Occidental, Philippines");
+        line("Email: postrero63@email.com");
+        line("LinkedIn: linkedin.com/in/dave-postrero-2840493a8");
+        line("GitHub: github.com/gorfet", { gap: 8 });
+
+        divider();
+
+        // Summary
+        section("Professional Summary");
+        wrap(
+          "IT student focused on building practical software solutions across web, mobile, and cybersecurity. Experienced with authentication, databases, and modern development workflows. Seeking opportunities to apply problem-solving skills and grow as a developer.",
         );
 
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(14);
-        doc.text("Education", 20, 90);
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(11);
-        doc.text("Bachelor of Science in Information Technology", 20, 98);
-        doc.text("STIWNU, 2022 – 2026 ", 20, 104);
-        doc.text(
-          "Relevant Coursework: Data Structures, Database Management, Network Security, Web Development, Mobile App Development",
-          20,
-          116,
-          { maxWidth: 170 },
+        // Education
+        section("Education");
+        line("Bachelor of Science in Information Technology", {
+          bold: true,
+          size: 11.5,
+        });
+        line("STIWNU | 2022 – 2026");
+        wrap(
+          "Relevant Coursework: Data Structures, Database Management, Web Development, Mobile App Development, Network Security",
         );
 
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(14);
-        doc.text("Certifications", 20, 130);
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(11);
-        doc.text("- CompTIA Security+ (In Progress, Expected 2026)", 20, 138);
-        doc.text("- AWS Cloud Practitioner (Planned 2026)", 20, 144);
+        // Certifications
+        section("Certifications");
+        bullet("CompTIA Security+ — In Progress (Expected 2026)");
+        bullet("AWS Cloud Practitioner — Planned (2026)");
 
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(14);
-        doc.text("Technical Skills", 20, 158);
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(11);
-        doc.text(
-          "Frontend: HTML5, CSS3, JavaScript, React, Tailwind CSS",
-          20,
-          166,
+        // Skills
+        section("Technical Skills");
+        bullet("Frontend: HTML5, CSS3, JavaScript, React, Tailwind CSS");
+        bullet("Mobile: React Native");
+        bullet("Backend: Node.js, Express.js, Python");
+        bullet("Databases: MySQL, MongoDB, Firebase");
+        bullet(
+          "Tools: Git/GitHub, VS Code, Linux (Basics), Agile/Scrum, Figma",
         );
-        doc.text("Backend: Node.js, Python, Express.js", 20, 172);
-        doc.text("Database: MySQL, MongoDB", 20, 178);
-        doc.text("Cloud & DevOps:", 20, 190);
-        doc.text("AWS (Learning), Linux, CI/CD Basics, Agile/Scrum", 20, 196);
 
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(14);
-        doc.text("Projects", 20, 204);
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(11);
-        doc.text(
-          "Student Habit Tracker: Mobile application with user authentication, analytics, and smart reminders. (React, react-native, Firebase Auth, Firebase Database)",
-          20,
-          212,
-          { maxWidth: 170 },
+        // Projects (UPDATED descriptions)
+        section("Projects");
+
+        line("Student Habit Tracker (Mobile App)", { bold: true, size: 11.5 });
+        bullet(
+          "Built a habit tracking mobile app with authentication, smart reminders, analytics, progression charts, achievements, and calendar integration.",
         );
+        bullet("Created an admin dashboard to manage users and activity data.");
+        bullet("Tech: React Native, Firebase Auth, Firebase Database");
+
+        gap(5);
+
+        line("Maze Runner (Web Game)", { bold: true, size: 11.5 });
+        bullet(
+          "Developed a web-based maze game with procedurally generated mazes, smooth controls, and obstacle navigation.",
+        );
+        bullet("Tech: HTML5, Tailwind CSS, JavaScript");
+
+        gap(5);
+
+        line("Battle Shapes (Game)", { bold: true, size: 11.5 });
+        bullet(
+          "Built an arena-style desktop game where players control geometric shapes and battle in real time.",
+        );
+        bullet("Tech: Python, Pygame");
+
+        // Page numbers
+        const pages = doc.getNumberOfPages();
+        for (let i = 1; i <= pages; i++) {
+          doc.setPage(i);
+          fontRegular(9);
+          doc.text(
+            `Page ${i} of ${pages}`,
+            pageWidth - marginX,
+            pageHeight - 10,
+            {
+              align: "right",
+            },
+          );
+        }
+
         doc.save("Dave-Postrero-Resume.pdf");
       }
 
