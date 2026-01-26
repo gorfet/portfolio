@@ -9,10 +9,7 @@
       content="Dave Postrero – Developer portfolio showcasing web, mobile projects"
     />
 
-    <meta
-      property="og:title"
-      content="Dave Postrero | Developer"
-    />
+    <meta property="og:title" content="Dave Postrero | Developer" />
     <meta
       property="og:description"
       content="Personal portfolio featuring modern web & mobile projects."
@@ -643,16 +640,16 @@
                 My Journey
               </h3>
               <p class="text-gray-600 mb-4 leading-relaxed">
-                I'm a dedicated developer with a passion for creating
-                innovative solutions and exploring cutting-edge technologies. My
-                journey in tech started with curiosity and has evolved into a
-                deep love for problem-solving.
+                I'm a dedicated developer with a passion for creating innovative
+                solutions and exploring cutting-edge technologies. My journey in
+                tech started with curiosity and has evolved into a deep love for
+                problem-solving.
               </p>
               <p class="text-gray-600 leading-relaxed">
-                Building practical experience through personal projects 
-                and continuous learning. I'm particularly interested in 
-                web development, mobile app development, game development, 
-                and emerging technologies.
+                Building practical experience through personal projects and
+                continuous learning. I'm particularly interested in web
+                development, mobile app development, game development, and
+                emerging technologies.
               </p>
             </div>
           </div>
@@ -716,8 +713,9 @@
                   STIWNU • 2022 - 2026
                 </p>
                 <p class="text-gray-600 mb-3">
-                  Relevant Coursework: Data Structures, Database Management, Web
-                  Development, Mobile App Development, Game Development
+                  Relevant Coursework: Data Structures, Object-Oriented
+                  Programming (Java), Database Management, Web Development,
+                  Mobile App Development, Game Development
                 </p>
               </div>
             </div>
@@ -791,7 +789,7 @@
                   ></div>
                 </div>
                 <p class="text-sm text-gray-600 mt-1">
-                  HTML5, CSS3, JavaScript, React, Tailwind CSS
+                  HTML5, CSS3, JavaScript, React, Tailwind CSS, Java
                 </p>
               </div>
 
@@ -809,7 +807,7 @@
                   ></div>
                 </div>
                 <p class="text-sm text-gray-600 mt-1">
-                  Node.js, Python, Express.js
+                  Node.js, Python, Express.js, Java
                 </p>
               </div>
 
@@ -842,6 +840,9 @@
                 <ul class="text-sm text-gray-600 space-y-1">
                   <li>• Git & GitHub</li>
                   <li>• VS Code</li>
+                  <li>• Java</li>
+                  <li>• OOP</li>
+                  <li>• Data Structures</li>
                 </ul>
               </div>
 
@@ -891,8 +892,7 @@
               <p class="text-gray-600 mb-3 text-sm leading-relaxed">
                 Habit tracking mobile app with authentication, smart reminders,
                 analytics, progression charts, achievements, calendar
-                integration, and an admin dashboard for managing users and
-                activity. Built with a clean, responsive UI.
+                integration. Built with a clean, responsive UI.
               </p>
               <div class="flex flex-wrap gap-2 mb-3">
                 <span
@@ -923,6 +923,55 @@
                       'React • React Native • Firebase Auth • Firebase Database',
                       'https://expo.dev/accounts/gorfet/projects/StudentHabitTracker/builds/7b31d6a3-338e-4767-83c9-db620faec987',
                       'https://github.com/gorfet/student-habit-tracker',
+                    )
+                  "
+                >
+                  View Details →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card-hover bg-white rounded-lg professional-shadow overflow-hidden fade-in"
+          >
+            <div
+              class="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center"
+            >
+              <div class="text-white text-5xl">⌨️</div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 text-gray-800">
+                Speed Typing
+              </h3>
+              <p class="text-gray-600 mb-3 text-sm leading-relaxed">
+                A Java-based desktop typing game built with Swing, featuring
+                user login/registration, timed typing challenges, score
+                tracking, and persistent local data storage. Designed to improve
+                typing speed and accuracy while demonstrating OOP principles,
+                GUI development, and event-driven programming.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs"
+                  >Java (Swing GUI)</span
+                >
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs"
+                  >Object-Oriented Programming (OOP)</span
+                >
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-gray-500">Duration: 3 months</span>
+                <button
+                  class="text-indigo-600 hover:text-indigo-800 font-medium"
+                  onclick="
+                    openModal(
+                      'SpeedTyping – SyntaxSquad',
+                      'Desktop typing game built with Java Swing featuring authentication, timed challenges, scoring, and local data persistence.',
+                      'Java • Swing • OOP • SQLite',
+                      '#',
+                      'https://github.com/gorfet/SpeedTyping',
                     )
                   "
                 >
@@ -1419,7 +1468,7 @@
         });
         line("STIWNU | 2022 – 2026");
         wrap(
-          "Relevant Coursework: Data Structures, Database Management, Web Development, Mobile App Development"
+          "Relevant Coursework: Data Structures, Object-Oriented Programming (Java), Database Management, Web Development, Mobile App Development",
         );
 
         // Certifications
@@ -1429,7 +1478,8 @@
 
         // Skills
         section("Technical Skills");
-        bullet("Frontend: HTML5, CSS3, JavaScript, React, Tailwind CSS");
+        bullet("Programming Languages: JavaScript, Python, Java");
+        bullet("Frontend: HTML5, CSS3, React, Tailwind CSS");
         bullet("Mobile: React Native");
         bullet("Backend: Node.js, Express.js, Python");
         bullet("Databases: MySQL, MongoDB, Firebase");
@@ -1444,8 +1494,18 @@
         bullet(
           "Built a habit tracking mobile app with authentication, smart reminders, analytics, progression charts, achievements, and calendar integration.",
         );
-        bullet("Created an admin dashboard to manage users and activity data.");
         bullet("Tech: React Native, Firebase Auth, Firebase Database");
+
+        gap(5);
+
+        line("Speed Typing Game", { bold: true, size: 11.5 });
+        bullet(
+          "Developed an interactive speed typing game that measures typing speed and accuracy in real time.",
+        );
+        bullet(
+          "Implemented dynamic text generation, input validation, scoring logic, and performance feedback.",
+        );
+        bullet("Tech: Java, Swing, SQLite");
 
         gap(5);
 
