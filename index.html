@@ -593,12 +593,21 @@
           >
             Get In Touch
           </button>
-          <button
-            onclick="downloadResume()"
-            class="border-2 border-indigo-600 text-indigo-600 px-8 py-3 rounded-full hover:bg-indigo-600 hover:text-white transition-all duration-300"
-          >
-            Download Resume
-          </button>
+          <div class="flex gap-3 justify-center">
+            <button
+              onclick="downloadResume()"
+              class="gradient-bg text-white px-6 py-3 rounded-full"
+            >
+              Download Resume
+            </button>
+          
+            <button
+              onclick="downloadResumeWithCoverLetter()"
+              class="border-2 border-indigo-600 text-indigo-600 px-6 py-3 rounded-full"
+            >
+              Resume + Cover Letter
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -1991,7 +2000,7 @@
           );
         }
       
-        doc.save("Dave-Postrero-Resume-and-CoverLetter.pdf");
+        doc.save("Dave-Postrero-Resume.pdf");
       }
 
       // Initialize everything
