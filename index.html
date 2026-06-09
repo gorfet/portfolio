@@ -1411,6 +1411,68 @@
           submitted = false;
         }
       }
+      // create pdf
+      function createPDF() {
+        if (!window.jspdf) {
+          alert("jsPDF failed to load.");
+          return null;
+        }
+      
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({
+          unit: "mm",
+          format: "a4",
+        });
+      
+        return doc;
+      }
+      
+      function addPageNumbers(doc) {
+        const pageCount = doc.getNumberOfPages();
+      
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const pageHeight = doc.internal.pageSize.getHeight();
+      
+        for (let i = 1; i <= pageCount; i++) {
+          doc.setPage(i);
+      
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(9);
+      
+          doc.text(
+            `Page ${i} of ${pageCount}`,
+            pageWidth - 18,
+            pageHeight - 8,
+            { align: "right" }
+          );
+        }
+      }
+
+      // download resume
+      function downloadResume() {
+        const doc = createPDF();
+        if (!doc) return;
+      
+        generateResume(doc);
+      
+        addPageNumbers(doc);
+      
+        doc.save("Dave-Postrero-Resume.pdf");
+      }
+
+      // download resume with cover letter
+      function downloadResumeWithCoverLetter() {
+        const doc = createPDF();
+        if (!doc) return;
+      
+        generateResume(doc);
+      
+        generateCoverLetter(doc);
+      
+        addPageNumbers(doc);
+      
+        doc.save("Dave-Postrero-Resume-and-CoverLetter.pdf");
+      }
       // Downloadresume with cover letter
       function downloadResumeWithCoverLetter() {
        const { jsPDF } = window.jspdf;
@@ -1658,68 +1720,7 @@
         // COVER LETTER PAGE
         // =========================
         
-        doc.addPage();
-        y = marginTop;
         
-        bold(18);
-        doc.text("Cover Letter", marginX, y);
-        y += 12;
-        
-        regular(11);
-        
-        const today = new Date().toLocaleDateString();
-        
-        doc.text(today, marginX, y);
-        y += 12;
-        
-        paragraph("Hiring Manager");
-        paragraph("Company Name");
-        paragraph("Company Address");
-        
-        y += 8;
-        
-        paragraph("Dear Hiring Manager,");
-        
-        y += 8;
-        
-        paragraph(
-          "I am writing to express my interest in the Junior Web/Mobile Developer position within your organization. As a graduating Bachelor of Science in Information Technology student from STI West Negros University, I have developed practical experience in web and mobile application development through academic projects, internship training, and personal software development initiatives."
-        );
-        
-        y += 4;
-        
-        paragraph(
-          "During my internship as an Assistant Programmer, I contributed to the development of a Faculty Evaluation System using Laravel, PHP, Bootstrap, JavaScript, and MySQL. This experience strengthened my skills in software development, debugging, database management, testing, and collaboration within a development environment."
-        );
-        
-        y += 4;
-        
-        paragraph(
-          "Additionally, I have built several projects including a mobile Habit Tracker application using React Native and Firebase, web applications using modern frontend technologies, and desktop applications using Java and Python. These projects allowed me to develop strong problem-solving abilities while gaining experience with both frontend and backend technologies."
-        );
-        
-        y += 4;
-        
-        paragraph(
-          "I am eager to contribute my technical skills, adaptability, and passion for continuous learning to your development team. I welcome the opportunity to discuss how my background and enthusiasm for software development can contribute to your organization's success."
-        );
-        
-        y += 8;
-        
-        paragraph("Thank you for your time and consideration.");
-        
-        y += 10;
-        
-        paragraph("Sincerely,");
-        
-        y += 12;
-        
-        bold(11);
-        doc.text("Dave Postrero", marginX, y);
-        y += 6;
-        
-        regular(11);
-        doc.text("Junior Web & Mobile Developer", marginX, y);
       
         // =========================
         // PAGE NUMBERS
@@ -1740,70 +1741,10 @@
       
         doc.save("Dave-Postrero-Resume-and-CoverLetter.pdf");
       }
+      
       // Download resume
-      function downloadResume() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({ unit: "mm", format: "a4" });
-      
-        const marginX = 18;
-        const marginTop = 18;
-        const marginBottom = 16;
-      
-        const pageWidth = doc.internal.pageSize.getWidth();
-        const pageHeight = doc.internal.pageSize.getHeight();
-        const maxWidth = pageWidth - marginX * 2;
-      
-        let y = marginTop;
-      
-        function newPageIfNeeded(space = 0) {
-          if (y + space > pageHeight - marginBottom) {
-            doc.addPage();
-            y = marginTop;
-          }
-        }
-      
-        function regular(size = 11) {
-          doc.setFont("helvetica", "normal");
-          doc.setFontSize(size);
-        }
-      
-        function bold(size = 11) {
-          doc.setFont("helvetica", "bold");
-          doc.setFontSize(size);
-        }
-      
-        function line(text, size = 11) {
-          newPageIfNeeded(6);
-          regular(size);
-          doc.text(text, marginX, y);
-          y += 6;
-        }
-      
-        function heading(text) {
-          y += 5;
-          bold(13);
-          doc.text(text.toUpperCase(), marginX, y);
-          y += 4;
-      
-          doc.setLineWidth(0.3);
-          doc.line(marginX, y, pageWidth - marginX, y);
-          y += 6;
-        }
-      
-        function paragraph(text) {
-          regular(11);
-          const lines = doc.splitTextToSize(text, maxWidth);
-          doc.text(lines, marginX, y);
-          y += lines.length * 6;
-        }
-      
-        function bullet(text) {
-          regular(11);
-          const lines = doc.splitTextToSize(`• ${text}`, maxWidth);
-          doc.text(lines, marginX, y);
-          y += lines.length * 6;
-        }
-      
+      function generateResume(doc) {
+        
         // =========================
         // HEADER
         // =========================
@@ -1816,8 +1757,22 @@
         line("BSIT Graduate | Junior Web & Mobile Developer");
         line("Silay City, Negros Occidental");
         line("Email: postrero63@email.com");
-        line("GitHub: github.com/gorfet");
-        line("Portfolio: gorfet.github.io/portfolio");
+        doc.textWithLink(
+          "GitHub: github.com/gorfet",
+          marginX,
+          y,
+          {
+            url: "https://github.com/gorfet"
+          }
+        );
+        doc.textWithLink(
+          "Portfolio: gorfet.github.io/portfolio",
+          marginX,
+          y,
+          {
+            url: "https://gorfet.github.io/portfolio"
+          }
+        );
         line("LinkedIn: linkedin.com/in/dave-postrero-2840493a8");
       
         // =========================
@@ -1983,24 +1938,72 @@
       
         doc.text("Expected Graduation: June 2026", marginX, y);
       
-        // =========================
-        // PAGE NUMBERS
-        // =========================
-      
-        const pages = doc.getNumberOfPages();
-      
-        for (let i = 1; i <= pages; i++) {
-          doc.setPage(i);
-          doc.setFontSize(9);
-          doc.text(
-            `Page ${i} of ${pages}`,
-            pageWidth - 18,
-            pageHeight - 8,
-            { align: "right" }
-          );
-        }
-      
-        doc.save("Dave-Postrero-Resume.pdf");
+      }
+
+      // generate cover letter
+      function generateCoverLetter(doc){
+        doc.addPage();
+        y = marginTop;
+        
+        bold(18);
+        doc.text("Cover Letter", marginX, y);
+        y += 12;
+        
+        regular(11);
+        
+        const today = new Date().toLocaleDateString();
+        
+        doc.text(today, marginX, y);
+        y += 12;
+        
+        paragraph("Hiring Manager");
+        paragraph("Company Name");
+        paragraph("Company Address");
+        
+        y += 8;
+        
+        paragraph("Dear Hiring Manager,");
+        
+        y += 8;
+        
+        paragraph(
+          "I am writing to express my interest in the Junior Web/Mobile Developer position within your organization. As a graduating Bachelor of Science in Information Technology student from STI West Negros University, I have developed practical experience in web and mobile application development through academic projects, internship training, and personal software development initiatives."
+        );
+        
+        y += 4;
+        
+        paragraph(
+          "During my internship as an Assistant Programmer, I contributed to the development of a Faculty Evaluation System using Laravel, PHP, Bootstrap, JavaScript, and MySQL. This experience strengthened my skills in software development, debugging, database management, testing, and collaboration within a development environment."
+        );
+        
+        y += 4;
+        
+        paragraph(
+          "Additionally, I have built several projects including a mobile Habit Tracker application using React Native and Firebase, web applications using modern frontend technologies, and desktop applications using Java and Python. These projects allowed me to develop strong problem-solving abilities while gaining experience with both frontend and backend technologies."
+        );
+        
+        y += 4;
+        
+        paragraph(
+          "I am eager to contribute my technical skills, adaptability, and passion for continuous learning to your development team. I welcome the opportunity to discuss how my background and enthusiasm for software development can contribute to your organization's success."
+        );
+        
+        y += 8;
+        
+        paragraph("Thank you for your time and consideration.");
+        
+        y += 10;
+        
+        paragraph("Sincerely,");
+        
+        y += 12;
+        
+        bold(11);
+        doc.text("Dave Postrero", marginX, y);
+        y += 6;
+        
+        regular(11);
+        doc.text("Junior Web & Mobile Developer", marginX, y);      
       }
 
       // Initialize everything
