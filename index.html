@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dave Postrero - Junior Web & Mobile Developer</title>
+    <title>Dave Postrero - Developer</title>
     <meta
       name="description"
-      content="Dave Postrero"
+      content="Dave Postrero – Developer portfolio showcasing web, mobile projects"
     />
 
-    <meta property="og:title" content="Dave Postrero | Junior Web & Mobile Developer" />
+    <meta property="og:title" content="Dave Postrero | Developer" />
     <meta
       property="og:description"
       content="Personal portfolio featuring modern web & mobile projects."
@@ -360,7 +360,7 @@
             />
           </div>
           <h2 class="text-xl font-bold text-gray-800 mb-1">Dave Postrero</h2>
-          <p class="text-sm text-gray-600 mb-4">Junior Web & Mobile Developer</p>
+          <p class="text-sm text-gray-600 mb-4">Developer</p>
           <div class="flex justify-center space-x-2">
             <span
               class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs"
@@ -487,21 +487,15 @@
 
         <!-- Action Buttons -->
         <div class="p-4 border-t border-gray-100 space-y-3">
-          <div class="flex gap-3 justify-center">
-            <button
-              onclick="downloadResume()"
-              class="gradient-bg text-white px-6 py-3 rounded-full"
-            >
-              Download Resume
-            </button>
-          
-            <button
-              onclick="downloadResumeWithCoverLetter()"
-              class="border-2 border-indigo-600 text-indigo-600 px-6 py-3 rounded-full"
-            >
-              Resume + Cover Letter
-            </button>
-          </div>
+          <button
+            onclick="
+              downloadResume();
+              closeSidebar();
+            "
+            class="w-full gradient-bg text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all duration-300 text-sm font-medium"
+          >
+            Download Resume
+          </button>
           <button
             onclick="
               scrollToSection('contact');
@@ -593,21 +587,12 @@
           >
             Get In Touch
           </button>
-          <div class="flex gap-3 justify-center">
-            <button
-              onclick="downloadResume()"
-              class="gradient-bg text-white px-6 py-3 rounded-full"
-            >
-              Download Resume
-            </button>
-          
-            <button
-              onclick="downloadResumeWithCoverLetter()"
-              class="border-2 border-indigo-600 text-indigo-600 px-6 py-3 rounded-full"
-            >
-              Resume + Cover Letter
-            </button>
-          </div>
+          <button
+            onclick="downloadResume()"
+            class="border-2 border-indigo-600 text-indigo-600 px-8 py-3 rounded-full hover:bg-indigo-600 hover:text-white transition-all duration-300"
+          >
+            Download Resume
+          </button>
         </div>
       </div>
     </section>
@@ -718,7 +703,7 @@
     <section id="education" class="py-20 px-6 lg:pl-96">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-4xl font-bold text-center mb-16 gradient-text fade-in">
-          Education
+          Education & Certifications
         </h2>
         <div class="space-y-8">
           <div
@@ -742,6 +727,42 @@
             </div>
           </div>
 
+          <div class="grid md:grid-cols-2 gap-6">
+            <div
+              class="card-hover bg-white p-6 rounded-lg professional-shadow fade-in"
+            >
+              <div class="flex items-start space-x-3">
+                <div class="text-2xl">📜</div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 mb-1">
+                    CompTIA Security+
+                  </h4>
+                  <p class="text-sm text-gray-600 mb-2">
+                    In Progress • Expected 2026
+                  </p>
+                  <p class="text-xs text-gray-500">
+                    Cybersecurity fundamentals and best practices
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="card-hover bg-white p-6 rounded-lg professional-shadow fade-in"
+            >
+              <div class="flex items-start space-x-3">
+                <div class="text-2xl">🏅</div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 mb-1">
+                    AWS Cloud Practitioner
+                  </h4>
+                  <p class="text-sm text-gray-600 mb-2">Planned • 2026</p>
+                  <p class="text-xs text-gray-500">
+                    Cloud computing fundamentals and AWS services
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1270,7 +1291,7 @@
         "Web Developer",
         "Mobile Developer",
         "Laravel Developer",
-        "Software Engineer",
+        "BSIT Graduate",
       ];
       let textIndex = 0;
       let charIndex = 0;
@@ -1411,599 +1432,329 @@
           submitted = false;
         }
       }
-      // create pdf
-      function createPDF() {
-        if (!window.jspdf) {
-          alert("jsPDF failed to load.");
-          return null;
-        }
-      
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({
-          unit: "mm",
-          format: "a4",
-        });
-      
-        return doc;
-      }
-      
-      function addPageNumbers(doc) {
-        const pageCount = doc.getNumberOfPages();
-      
-        const pageWidth = doc.internal.pageSize.getWidth();
-        const pageHeight = doc.internal.pageSize.getHeight();
-      
-        for (let i = 1; i <= pageCount; i++) {
-          doc.setPage(i);
-      
-          doc.setFont("helvetica", "normal");
-          doc.setFontSize(9);
-      
-          doc.text(
-            `Page ${i} of ${pageCount}`,
-            pageWidth - 18,
-            pageHeight - 8,
-            { align: "right" }
-          );
-        }
-      }
 
-      // download resume
+      // Download resume
       function downloadResume() {
-        const doc = createPDF();
-        if (!doc) return;
-      
-        generateResume(doc);
-      
-        addPageNumbers(doc);
-      
-        doc.save("Dave-Postrero-Resume.pdf");
-      }
-
-      // download resume with cover letter
-      function downloadResumeWithCoverLetter() {
-        const doc = createPDF();
-        if (!doc) return;
-      
-        generateResume(doc);
-      
-        generateCoverLetter(doc);
-      
-        addPageNumbers(doc);
-      
-        doc.save("Dave-Postrero-Resume-and-CoverLetter.pdf");
-      }
-      // Downloadresume with cover letter
-      function downloadResumeWithCoverLetter() {
-       const { jsPDF } = window.jspdf;
+        const { jsPDF } = window.jspdf;
         const doc = new jsPDF({ unit: "mm", format: "a4" });
-      
+
+        // Layout
         const marginX = 18;
         const marginTop = 18;
         const marginBottom = 16;
-      
+
         const pageWidth = doc.internal.pageSize.getWidth();
         const pageHeight = doc.internal.pageSize.getHeight();
         const maxWidth = pageWidth - marginX * 2;
-      
+
         let y = marginTop;
-      
+
+        // Readability spacing
+        const GAP_LINE = 6;
+        const GAP_WRAP = 6;
+        const GAP_BULLET = 6;
+
+        // Helpers
         function newPageIfNeeded(space = 0) {
           if (y + space > pageHeight - marginBottom) {
             doc.addPage();
             y = marginTop;
           }
         }
-      
-        function regular(size = 11) {
+
+        function fontRegular(size = 11) {
           doc.setFont("helvetica", "normal");
           doc.setFontSize(size);
         }
-      
-        function bold(size = 11) {
+
+        function fontBold(size = 11) {
           doc.setFont("helvetica", "bold");
           doc.setFontSize(size);
         }
-      
-        function line(text, size = 11) {
+
+        function divider() {
           newPageIfNeeded(6);
-          regular(size);
-          doc.text(text, marginX, y);
-          y += 6;
-        }
-      
-        function heading(text) {
-          y += 5;
-          bold(13);
-          doc.text(text.toUpperCase(), marginX, y);
-          y += 4;
-      
-          doc.setLineWidth(0.3);
+          doc.setDrawColor(0);
+          doc.setLineWidth(0.35);
           doc.line(marginX, y, pageWidth - marginX, y);
-          y += 6;
+          y += 5;
         }
-      
-        function paragraph(text) {
-          regular(11);
+
+        function line(text, opts = {}) {
+          const { bold = false, size = 11, gap = GAP_LINE } = opts;
+          newPageIfNeeded(gap);
+          bold ? fontBold(size) : fontRegular(size);
+          doc.text(text, marginX, y);
+          y += gap;
+        }
+
+        function wrap(text, opts = {}) {
+          const { bold = false, size = 11, gap = GAP_WRAP } = opts;
+          bold ? fontBold(size) : fontRegular(size);
+
           const lines = doc.splitTextToSize(text, maxWidth);
+          const height = lines.length * gap;
+
+          newPageIfNeeded(height + 2);
           doc.text(lines, marginX, y);
-          y += lines.length * 6;
+          y += height;
         }
-      
+
+        function section(title) {
+          newPageIfNeeded(18);
+          y += 6;
+          fontBold(12.5);
+          doc.text(title.toUpperCase(), marginX, y);
+          y += 5;
+          divider();
+          y += 2;
+        }
+
         function bullet(text) {
-          regular(11);
-          const lines = doc.splitTextToSize(`• ${text}`, maxWidth);
-          doc.text(lines, marginX, y);
-          y += lines.length * 6;
+          wrap(`- ${text}`, { size: 11, gap: GAP_BULLET });
         }
-      
-        // =========================
-        // HEADER
-        // =========================
-      
-        bold(20);
+
+        function gap(mm = 4) {
+          newPageIfNeeded(mm);
+          y += mm;
+        }
+
+        //cover letter
+        y = marginTop;
+
+        fontBold(18);
+        doc.text("Cover Letter", marginX, y);
+        y += 12;
+
+        fontRegular(11);
+
+        const today = new Date().toLocaleDateString();
+
+        doc.text(today, marginX, y);
+        y += 12;
+
+        wrap("Hiring Manager");
+
+        gap(8);
+
+        wrap("Dear Hiring Manager,");
+
+        gap(8);
+
+        wrap(
+          "I am writing to express my interest in the Junior Web/Mobile Developer position within your organization. As a graduating Bachelor of Science in Information Technology student from STI West Negros University, I have developed practical experience in web and mobile application development through academic projects, internship training, and personal software development initiatives."
+        );
+
+        gap(4);
+
+        wrap(
+          "During my internship as an Assistant Programmer, I contributed to the development of a Faculty Evaluation System using Laravel, PHP, Bootstrap, JavaScript, and MySQL. This experience strengthened my skills in software development, debugging, database management, testing, and collaboration within a development environment."
+        );
+
+        gap(4);
+
+        wrap(
+          "Additionally, I have built several projects including a mobile Habit Tracker application using React Native and Firebase, web applications using modern frontend technologies, and desktop applications using Java and Python. These projects allowed me to develop strong problem-solving abilities while gaining experience with both frontend and backend technologies."
+        );
+
+        gap(4);
+
+        wrap(
+          "I am eager to contribute my technical skills, adaptability, and passion for continuous learning to your development team. I welcome the opportunity to discuss how my background and enthusiasm for software development can contribute to your organization's success."
+        );
+
+        gap(8);
+
+        wrap("Thank you for your time and consideration.");
+
+        gap(10);
+
+        wrap("Sincerely,");
+
+        gap(12);
+
+        fontBold(11);
         doc.text("Dave Postrero", marginX, y);
-        y += 8;
-      
-        regular(11);
+        y += 6;
+
+        fontRegular(11);
+        doc.text("Junior Web & Mobile Developer", marginX, y);
+        y += 6;
+
+        // Header
+        newPageIfNeeded(0);
+        doc.addPage();
+        y = marginTop;
+        
+        fontBold(18);
+        doc.text("Dave Postrero", marginX, y);
+        y += 9;
+
+        fontRegular(11);
         line("BSIT Graduate | Junior Web & Mobile Developer");
         line("Silay City, Negros Occidental");
         line("Email: postrero63@email.com");
         line("GitHub: github.com/gorfet");
         line("Portfolio: gorfet.github.io/portfolio");
         line("LinkedIn: linkedin.com/in/dave-postrero-2840493a8");
-      
-        // =========================
-        // SUMMARY
-        // =========================
-      
-        heading("Professional Summary");
-      
-        paragraph(
-          "Graduating Bachelor of Science in Information Technology student with hands-on experience in web and mobile application development through internship training, academic projects, and personal development projects. Proficient in PHP, Laravel, JavaScript, React Native, MySQL, and Firebase. Experienced in developing database-driven applications, implementing responsive user interfaces, and collaborating throughout the software development lifecycle."
+
+        divider();
+
+        // Summary
+        section("Professional Summary");
+        wrap(
+          "Graduating Bachelor of Science in Information Technology student with hands-on experience in web and mobile application development through internship training, academic projects, and personal development projects. Proficient in PHP, Laravel, JavaScript, React Native, MySQL, and Firebase. Experienced in developing database-driven applications, implementing responsive user interfaces, and collaborating throughout the software development lifecycle.",
         );
-      
-        // =========================
-        // EXPERIENCE
-        // =========================
-      
-        heading("Experience");
-      
-        bold(12);
+        
+        //Experience
+        section("Experience");
+
+        fontBold(12)
         doc.text("Assistant Programmer Intern", marginX, y);
         y += 6;
-      
-        regular(11);
+
+        fontRegular(11);
         doc.text(
           "Information Technology Systems and Services (ITSS)",
           marginX,
           y
         );
         y += 6;
-      
+
         doc.text("February 2026 – May 2026", marginX, y);
         y += 8;
-      
+
         bullet(
           "Assisted in the development of a Faculty Evaluation System using Laravel, PHP, Bootstrap, JavaScript, and MySQL."
         );
-      
+
         bullet(
           "Implemented user interface enhancements and system functionalities."
         );
-      
+
         bullet(
           "Conducted software testing, debugging, troubleshooting, and maintenance."
         );
-      
+
         bullet(
           "Participated in database design and management activities."
         );
-      
+
         bullet(
           "Collaborated with project stakeholders throughout the software development lifecycle."
         );
-      
-        // =========================
-        // PROJECTS
-        // =========================
-      
-        heading("Projects");
-      
-        bold(12);
-        doc.text("Faculty Evaluation System", marginX, y);
-        y += 6;
-      
-        regular(11);
-        bullet(
-          "Developed a web-based faculty evaluation platform using Laravel, PHP, Bootstrap, and MySQL."
-        );
-      
-        bullet(
-          "Implemented authentication, reporting features, and evaluation management functionalities."
-        );
-      
-        y += 4;
-      
-        bold(12);
-        doc.text("Student Habit Tracker Mobile App", marginX, y);
-        y += 6;
-      
-        regular(11);
-        bullet(
-          "Built a mobile application with authentication, reminders, achievements, analytics, and progress tracking."
-        );
-      
-        bullet(
-          "Integrated Firebase Authentication and Cloud Database services."
-        );
-      
-        y += 4;
-      
-        bold(12);
-        doc.text("Speed Typing Application", marginX, y);
-        y += 6;
-      
-        regular(11);
-        bullet(
-          "Developed a desktop application that measures typing speed and accuracy."
-        );
-      
-        bullet(
-          "Implemented authentication, score tracking, and local database storage."
-        );
-      
-        y += 4;
-      
-        bold(12);
-        doc.text("Maze Runner", marginX, y);
-        y += 6;
-      
-        regular(11);
-        bullet(
-          "Developed a browser-based maze game using HTML, Tailwind CSS, and JavaScript."
-        );
-      
-        y += 4;
-      
-        bold(12);
-        doc.text("Battle Shapes", marginX, y);
-        y += 6;
-      
-        regular(11);
-        bullet(
-          "Created an arena-style desktop game with real-time gameplay using Python and Pygame."
-        );
-      
-        // =========================
-        // SKILLS
-        // =========================
-      
-        heading("Technical Skills");
-      
-        bullet("Programming Languages: PHP, JavaScript, Java, Python");
-      
-        bullet("Frontend: HTML5, CSS3, Bootstrap, Tailwind CSS, React");
-      
-        bullet("Backend: Laravel, Node.js, Express.js");
-      
-        bullet("Mobile Development: React Native");
-      
-        bullet("Databases: MySQL, MongoDB, Firebase");
-      
-        bullet("Tools: Git, GitHub, VS Code, Postman, Figma");
-      
-        // =========================
-        // EDUCATION
-        // =========================
-      
-        heading("Education");
-      
-        bold(12);
-        doc.text(
-          "Bachelor of Science in Information Technology",
+      doc.text(
+          "Information Technology Systems and Services (ITSS)",
           marginX,
           y
         );
         y += 6;
-      
-        regular(11);
-        doc.text("STI West Negros University", marginX, y);
-        y += 6;
-      
-        doc.text("2022 - 2026", marginX, y);
-        y += 6;
-      
-        doc.text("Expected Graduation: June 2026", marginX, y);
 
-        // =========================
-        // COVER LETTER PAGE
-        // =========================
-        
-        
-      
-        // =========================
-        // PAGE NUMBERS
-        // =========================
-      
+        doc.text("February 2026 – May 2026", marginX, y);
+        y += 8;
+
+        bullet(
+          "Assisted in the development of a Faculty Evaluation System using Laravel, PHP, Bootstrap, JavaScript, and MySQL."
+        );
+
+        bullet(
+          "Implemented user interface enhancements and system functionalities."
+        );
+
+        bullet(
+          "Conducted software testing, debugging, troubleshooting, and maintenance."
+        );
+
+        bullet(
+          "Participated in database design and management activities."
+        );
+
+        bullet(
+          "Collaborated with project stakeholders throughout the software development lifecycle."
+        );
+
+        // Education
+        section("Education");
+        line("Bachelor of Science in Information Technology", {
+          bold: true,
+          size: 11.5,
+        });
+        line("STIWNU | 2022 – 2026");
+        wrap(
+          "Relevant Coursework: Data Structures, Object-Oriented Programming (Java), Database Management, Web Development, Mobile App Development",
+        );
+
+        // Skills
+        section("Technical Skills");
+        bullet("Programming Languages: PHP, JavaScript, Java, Python");
+        bullet("Frontend: HTML5, CSS3, Bootstrap, Tailwind CSS, React");
+        bullet("Backend: Laravel, Node.js, Express.js");
+        bullet("Mobile Development: React Native");
+        bullet("Databases: MySQL, MongoDB, Firebase");
+        bullet("Tools: Git, GitHub, VS Code, Postman, Figma");
+
+        // Projects (UPDATED descriptions)
+        section("Projects");
+
+        line("Faculty Evaluation System", {bold:true, size: 11.5});
+        bullet(
+          "Developed a web-based faculty evaluation platform using Laravel, PHP, Bootstrap, and MySQL."
+        );
+        bullet(
+          "Implemented authentication, reporting features, and evaluation management functionalities."
+        );
+
+        gap(5);
+
+        line("Student Habit Tracker (Mobile App)", { bold: true, size: 11.5 });
+        bullet(
+          "Built a habit tracking mobile app with authentication, smart reminders, analytics, progression charts, achievements, and calendar integration.",
+        );
+        bullet("Tech: React Native, Firebase Auth, Firebase Database");
+
+        gap(5);
+
+        line("Speed Typing Game", { bold: true, size: 11.5 });
+        bullet(
+          "Developed an interactive speed typing game that measures typing speed and accuracy in real time.",
+        );
+        bullet(
+          "Implemented dynamic text generation, input validation, scoring logic, and performance feedback.",
+        );
+        bullet("Tech: Java, Swing, SQLite");
+
+        gap(5);
+
+        line("Maze Runner (Web Game)", { bold: true, size: 11.5 });
+        bullet(
+          "Developed a web-based maze game with procedurally generated mazes, smooth controls, and obstacle navigation.",
+        );
+        bullet("Tech: HTML5, Tailwind CSS, JavaScript");
+
+        gap(5);
+
+        line("Battle Shapes (Game)", { bold: true, size: 11.5 });
+        bullet(
+          "Built an arena-style desktop game where players control geometric shapes and battle in real time.",
+        );
+        bullet("Tech: Python, Pygame");
+
+        // Page numbers
         const pages = doc.getNumberOfPages();
-      
         for (let i = 1; i <= pages; i++) {
           doc.setPage(i);
-          doc.setFontSize(9);
+          fontRegular(9);
           doc.text(
             `Page ${i} of ${pages}`,
-            pageWidth - 18,
-            pageHeight - 8,
-            { align: "right" }
+            pageWidth - marginX,
+            pageHeight - 10,
+            {
+              align: "right",
+            },
           );
         }
-      
-        doc.save("Dave-Postrero-Resume-and-CoverLetter.pdf");
-      }
-      
-      // Download resume
-      function generateResume(doc) {
-        
-        // =========================
-        // HEADER
-        // =========================
-      
-        bold(20);
-        doc.text("Dave Postrero", marginX, y);
-        y += 8;
-      
-        regular(11);
-        line("BSIT Graduate | Junior Web & Mobile Developer");
-        line("Silay City, Negros Occidental");
-        line("Email: postrero63@email.com");
-        doc.textWithLink(
-          "GitHub: github.com/gorfet",
-          marginX,
-          y,
-          {
-            url: "https://github.com/gorfet"
-          }
-        );
-        doc.textWithLink(
-          "Portfolio: gorfet.github.io/portfolio",
-          marginX,
-          y,
-          {
-            url: "https://gorfet.github.io/portfolio"
-          }
-        );
-        line("LinkedIn: linkedin.com/in/dave-postrero-2840493a8");
-      
-        // =========================
-        // SUMMARY
-        // =========================
-      
-        heading("Professional Summary");
-      
-        paragraph(
-          "Graduating Bachelor of Science in Information Technology student with hands-on experience in web and mobile application development through internship training, academic projects, and personal development projects. Proficient in PHP, Laravel, JavaScript, React Native, MySQL, and Firebase. Experienced in developing database-driven applications, implementing responsive user interfaces, and collaborating throughout the software development lifecycle."
-        );
-      
-        // =========================
-        // EXPERIENCE
-        // =========================
-      
-        heading("Experience");
-      
-        bold(12);
-        doc.text("Assistant Programmer Intern", marginX, y);
-        y += 6;
-      
-        regular(11);
-        doc.text(
-          "Information Technology Systems and Services (ITSS)",
-          marginX,
-          y
-        );
-        y += 6;
-      
-        doc.text("February 2026 – May 2026", marginX, y);
-        y += 8;
-      
-        bullet(
-          "Assisted in the development of a Faculty Evaluation System using Laravel, PHP, Bootstrap, JavaScript, and MySQL."
-        );
-      
-        bullet(
-          "Implemented user interface enhancements and system functionalities."
-        );
-      
-        bullet(
-          "Conducted software testing, debugging, troubleshooting, and maintenance."
-        );
-      
-        bullet(
-          "Participated in database design and management activities."
-        );
-      
-        bullet(
-          "Collaborated with project stakeholders throughout the software development lifecycle."
-        );
-      
-        // =========================
-        // PROJECTS
-        // =========================
-      
-        heading("Projects");
-      
-        bold(12);
-        doc.text("Faculty Evaluation System", marginX, y);
-        y += 6;
-      
-        regular(11);
-        bullet(
-          "Developed a web-based faculty evaluation platform using Laravel, PHP, Bootstrap, and MySQL."
-        );
-      
-        bullet(
-          "Implemented authentication, reporting features, and evaluation management functionalities."
-        );
-      
-        y += 4;
-      
-        bold(12);
-        doc.text("Student Habit Tracker Mobile App", marginX, y);
-        y += 6;
-      
-        regular(11);
-        bullet(
-          "Built a mobile application with authentication, reminders, achievements, analytics, and progress tracking."
-        );
-      
-        bullet(
-          "Integrated Firebase Authentication and Cloud Database services."
-        );
-      
-        y += 4;
-      
-        bold(12);
-        doc.text("Speed Typing Application", marginX, y);
-        y += 6;
-      
-        regular(11);
-        bullet(
-          "Developed a desktop application that measures typing speed and accuracy."
-        );
-      
-        bullet(
-          "Implemented authentication, score tracking, and local database storage."
-        );
-      
-        y += 4;
-      
-        bold(12);
-        doc.text("Maze Runner", marginX, y);
-        y += 6;
-      
-        regular(11);
-        bullet(
-          "Developed a browser-based maze game using HTML, Tailwind CSS, and JavaScript."
-        );
-      
-        y += 4;
-      
-        bold(12);
-        doc.text("Battle Shapes", marginX, y);
-        y += 6;
-      
-        regular(11);
-        bullet(
-          "Created an arena-style desktop game with real-time gameplay using Python and Pygame."
-        );
-      
-        // =========================
-        // SKILLS
-        // =========================
-      
-        heading("Technical Skills");
-      
-        bullet("Programming Languages: PHP, JavaScript, Java, Python");
-      
-        bullet("Frontend: HTML5, CSS3, Bootstrap, Tailwind CSS, React");
-      
-        bullet("Backend: Laravel, Node.js, Express.js");
-      
-        bullet("Mobile Development: React Native");
-      
-        bullet("Databases: MySQL, MongoDB, Firebase");
-      
-        bullet("Tools: Git, GitHub, VS Code, Postman, Figma");
-      
-        // =========================
-        // EDUCATION
-        // =========================
-      
-        heading("Education");
-      
-        bold(12);
-        doc.text(
-          "Bachelor of Science in Information Technology",
-          marginX,
-          y
-        );
-        y += 6;
-      
-        regular(11);
-        doc.text("STI West Negros University", marginX, y);
-        y += 6;
-      
-        doc.text("2022 - 2026", marginX, y);
-        y += 6;
-      
-        doc.text("Expected Graduation: June 2026", marginX, y);
-      
-      }
 
-      // generate cover letter
-      function generateCoverLetter(doc){
-        doc.addPage();
-        y = marginTop;
-        
-        bold(18);
-        doc.text("Cover Letter", marginX, y);
-        y += 12;
-        
-        regular(11);
-        
-        const today = new Date().toLocaleDateString();
-        
-        doc.text(today, marginX, y);
-        y += 12;
-        
-        paragraph("Hiring Manager");
-        paragraph("Company Name");
-        paragraph("Company Address");
-        
-        y += 8;
-        
-        paragraph("Dear Hiring Manager,");
-        
-        y += 8;
-        
-        paragraph(
-          "I am writing to express my interest in the Junior Web/Mobile Developer position within your organization. As a graduating Bachelor of Science in Information Technology student from STI West Negros University, I have developed practical experience in web and mobile application development through academic projects, internship training, and personal software development initiatives."
-        );
-        
-        y += 4;
-        
-        paragraph(
-          "During my internship as an Assistant Programmer, I contributed to the development of a Faculty Evaluation System using Laravel, PHP, Bootstrap, JavaScript, and MySQL. This experience strengthened my skills in software development, debugging, database management, testing, and collaboration within a development environment."
-        );
-        
-        y += 4;
-        
-        paragraph(
-          "Additionally, I have built several projects including a mobile Habit Tracker application using React Native and Firebase, web applications using modern frontend technologies, and desktop applications using Java and Python. These projects allowed me to develop strong problem-solving abilities while gaining experience with both frontend and backend technologies."
-        );
-        
-        y += 4;
-        
-        paragraph(
-          "I am eager to contribute my technical skills, adaptability, and passion for continuous learning to your development team. I welcome the opportunity to discuss how my background and enthusiasm for software development can contribute to your organization's success."
-        );
-        
-        y += 8;
-        
-        paragraph("Thank you for your time and consideration.");
-        
-        y += 10;
-        
-        paragraph("Sincerely,");
-        
-        y += 12;
-        
-        bold(11);
-        doc.text("Dave Postrero", marginX, y);
-        y += 6;
-        
-        regular(11);
-        doc.text("Junior Web & Mobile Developer", marginX, y);      
+        doc.save("Dave-Postrero-Resume.pdf");
       }
 
       // Initialize everything
