@@ -1420,6 +1420,22 @@
           doc.setFontSize(size);
         }
 
+        function footer(text, size = 9) {
+          const pageWidth = doc.internal.pageSize.getWidth();
+          const pageHeight = doc.internal.pageSize.getHeight();
+
+          doc.setFont("helvetica", "italic");   // lighter “footer feel”
+          doc.setFontSize(size);
+          doc.setTextColor(120);                // gray text (important for footer style)
+
+          doc.text(String(text), pageWidth / 2, pageHeight - 10, {
+            align: "center"
+          });
+
+          // reset back to normal for safety
+          doc.setTextColor(0);
+        }
+
         function divider() {
           newPageIfNeeded(6);
           doc.setDrawColor(0);
@@ -1437,15 +1453,23 @@
         }
 
         function wrap(text, opts = {}) {
-          const { bold = false, size = 11, gap = GAP_WRAP } = opts;
+          const {
+            bold = false,
+            size = 11,
+            gap = GAP_WRAP,
+            x = marginX,
+            width = maxWidth
+          } = opts;
+
           bold ? fontBold(size) : fontRegular(size);
 
-          const lines = doc.splitTextToSize(text, maxWidth);
-          const height = lines.length * gap;
+          const lines = doc.splitTextToSize(text, width);
 
-          newPageIfNeeded(height + 2);
-          doc.text(lines, marginX, y);
-          y += height;
+          newPageIfNeeded(lines.length * gap + 2);
+
+          doc.text(lines, x, y);
+
+          y += lines.length * gap;
         }
 
         function section(title) {
@@ -1459,7 +1483,12 @@
         }
 
         function bullet(text) {
-          wrap(`- ${text}`, { size: 11, gap: GAP_BULLET });
+          doc.text("•", marginX, y);
+          wrap(text, {
+            x: marginX + 5,
+            width: maxWidth - 5,
+            gap: GAP_BULLET
+          });
         }
 
         function gap(mm = 4) {
@@ -1538,20 +1567,19 @@
         doc.text("Dave Postrero", marginX, y);
         y += 9;
 
-        fontRegular(11);
+        footer(11);
         line("BSIT Graduate | Junior Web & Mobile Developer");
         line("Silay City, Negros Occidental");
-        line("Email: postrero63@email.com");
-        line("GitHub: github.com/gorfet");
+        line("Email: postrero63@gmail.com");
         line("Portfolio: gorfet.github.io/portfolio");
-        line("LinkedIn: linkedin.com/in/dave-postrero-2840493a8");
+
 
         divider();
 
         // Summary
         section("Professional Summary");
         wrap(
-          "Graduating Bachelor of Science in Information Technology student with hands-on experience in web and mobile application development through internship training, academic projects, and personal development projects. Proficient in PHP, Laravel, JavaScript, React Native, MySQL, and Firebase. Experienced in developing database-driven applications, implementing responsive user interfaces, and collaborating throughout the software development lifecycle.",
+          "Entry-Level IT Professional with hands-on experience in web and mobile application development through internship training, academic projects, and personal development projects.",
         );
         
         //Experience
@@ -1601,26 +1629,6 @@
         doc.text("February 2026 – May 2026", marginX, y);
         y += 8;
 
-        bullet(
-          "Assisted in the development of a Faculty Evaluation System using Laravel, PHP, Bootstrap, JavaScript, and MySQL."
-        );
-
-        bullet(
-          "Implemented user interface enhancements and system functionalities."
-        );
-
-        bullet(
-          "Conducted software testing, debugging, troubleshooting, and maintenance."
-        );
-
-        bullet(
-          "Participated in database design and management activities."
-        );
-
-        bullet(
-          "Collaborated with project stakeholders throughout the software development lifecycle."
-        );
-
         // Education
         section("Education");
         line("Bachelor of Science in Information Technology", {
@@ -1628,7 +1636,7 @@
           size: 11.5,
         });
         wrap(
-          "Relevant Coursework: Data Structures, Object-Oriented Programming (Java), Database Management, Web Development, Mobile App Development",
+          "STI West Negros University",
         );
 
         // Skills
