@@ -1472,6 +1472,24 @@
           y += lines.length * gap;
         }
 
+        function contactFooter() {
+          const pageWidth = doc.internal.pageSize.getWidth();
+          const pageHeight = doc.internal.pageSize.getHeight();
+
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(9);
+          doc.setTextColor(120); // light gray like real document footer
+
+          const footerText =
+            "Silay City, Negros Occidental  |  postrero63@gmail.com  |  gorfet.github.io/portfolio";
+
+          doc.text(footerText, pageWidth / 2, pageHeight - 10, {
+            align: "center"
+          });
+
+          doc.setTextColor(0); // reset
+        }
+
         function section(title) {
           newPageIfNeeded(18);
           y += 6;
@@ -1567,17 +1585,10 @@
         doc.text("Dave Postrero", marginX, y);
         y += 9;
 
-        footer(11);
-        line("BSIT Graduate | Junior Web & Mobile Developer");
-        line("Silay City, Negros Occidental");
-        line("Email: postrero63@gmail.com");
-        line("Portfolio: gorfet.github.io/portfolio");
-
-
         divider();
 
         // Summary
-        section("Professional Summary");
+        section();
         wrap(
           "Entry-Level IT Professional with hands-on experience in web and mobile application development through internship training, academic projects, and personal development projects.",
         );
@@ -1619,15 +1630,7 @@
         bullet(
           "Collaborated with project stakeholders throughout the software development lifecycle."
         );
-      doc.text(
-          "Information Technology Systems and Services (ITSS)",
-          marginX,
-          y
-        );
         y += 6;
-
-        doc.text("February 2026 – May 2026", marginX, y);
-        y += 8;
 
         // Education
         section("Education");
@@ -1693,6 +1696,8 @@
           "Built an arena-style desktop game where players control geometric shapes and battle in real time.",
         );
         bullet("Tech: Python, Pygame");
+
+        contactFooter();
 
         // Page numbers
         const pages = doc.getNumberOfPages();
