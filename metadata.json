@@ -1,0 +1,6 @@
+{
+  "name": "Dave Postrero Portfolio",
+  "description": "Dave Postrero - Professional Portfolio with interactive resume builder and project showcase",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
