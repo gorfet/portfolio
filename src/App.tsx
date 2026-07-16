@@ -118,12 +118,15 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 text-slate-800 dark:text-zinc-200 transition-colors duration-300">
       
-      {/* MOBILE HEADER */}
+       {/* MOBILE HEADER */}
       <header className="lg:hidden sticky top-0 z-40 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-slate-100 dark:border-zinc-850 px-5 py-4 flex justify-between items-center">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-violet-600 flex items-center justify-center text-white font-bold text-sm">
-            DP
-          </div>
+        <div className="flex items-center gap-2.5">
+          <img
+            src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=120&h=120"
+            alt="Dave Postrero Profile"
+            className="w-8 h-8 rounded-full object-cover border border-slate-200 dark:border-zinc-700 shadow-sm"
+            referrerPolicy="no-referrer"
+          />
           <span className="font-display font-bold text-slate-900 dark:text-zinc-100 text-sm">
             Dave Postrero
           </span>
@@ -209,14 +212,16 @@ export default function App() {
 
           {/* Quick Profile Bio */}
           <div className="p-5 bg-slate-50/50 dark:bg-zinc-950/40 border border-slate-100 dark:border-zinc-850 rounded-2xl mb-8">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-slate-200 to-slate-300 dark:from-zinc-800 dark:to-zinc-700 flex items-center justify-center text-xl font-bold border border-white dark:border-zinc-800">
-                👨‍💻
-              </div>
+            <div className="flex items-center gap-3.5 mb-3">
+              <img
+                src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=150&h=150"
+                alt="Dave Postrero Portrait"
+                className="w-12 h-12 rounded-full object-cover border-2 border-white dark:border-zinc-800 shadow-sm"
+                referrerPolicy="no-referrer"
+              />
               <div>
                 <h3 className="text-sm font-bold text-slate-800 dark:text-zinc-200 leading-tight">Dave Postrero</h3>
-                <span className="text-[10px] bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-400 font-semibold px-2 py-0.5 rounded-full inline-block mt-1">
-                  Active For Work
+                <span className="text-[10px] bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-400 font-semibold px-2 py-0.5 rounded-full inline-block mt-1">                  Active For Work
                 </span>
               </div>
             </div>
@@ -309,10 +314,15 @@ export default function App() {
             {/* Profile Avatar stack */}
             <div className="relative w-28 h-28 mx-auto">
               <div className="absolute inset-0 bg-indigo-500 rounded-full blur-md opacity-20 animate-pulse-slow" />
-              <div className="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 p-0.5 shadow-md flex items-center justify-center relative">
-                <div className="w-full h-full rounded-full bg-white dark:bg-zinc-950 flex items-center justify-center text-5xl">
-                  👨‍💻
-                </div>
+              <div className="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 p-0.5 shadow-md flex items-center justify-center relative overflow-hidden">
+                <img
+                  src="profile.jfif"
+                  alt="Dave Postrero Headshot"
+                  className="w-full h-full rounded-full object-cover border border-white dark:border-zinc-900"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
               </div>
             </div>
 
