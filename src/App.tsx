@@ -118,7 +118,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-zinc-950 text-slate-800 dark:text-zinc-200 transition-colors duration-300">
       
-       {/* MOBILE HEADER */}
+      {/* MOBILE HEADER */}
       <header className="lg:hidden sticky top-0 z-40 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-slate-100 dark:border-zinc-850 px-5 py-4 flex justify-between items-center">
         <div className="flex items-center gap-2.5">
           <img
@@ -221,7 +221,8 @@ export default function App() {
               />
               <div>
                 <h3 className="text-sm font-bold text-slate-800 dark:text-zinc-200 leading-tight">Dave Postrero</h3>
-                <span className="text-[10px] bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-400 font-semibold px-2 py-0.5 rounded-full inline-block mt-1">                  Active For Work
+                <span className="text-[10px] bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-400 font-semibold px-2 py-0.5 rounded-full inline-block mt-1">
+                  Active For Work
                 </span>
               </div>
             </div>
@@ -316,13 +317,11 @@ export default function App() {
               <div className="absolute inset-0 bg-indigo-500 rounded-full blur-md opacity-20 animate-pulse-slow" />
               <div className="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 p-0.5 shadow-md flex items-center justify-center relative overflow-hidden">
                 <img
-                  src="profile.jfif"
+                  src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=300&h=300"
                   alt="Dave Postrero Headshot"
                   className="w-full h-full rounded-full object-cover border border-white dark:border-zinc-900"
                   referrerPolicy="no-referrer"
                 />
-              </div>
-            </div>
               </div>
             </div>
 
