@@ -105,14 +105,14 @@ export const INITIAL_PROJECTS: Project[] = [
 ];
 
 export const INITIAL_RESUME_DATA: ResumeData = {
-  personalInfo: {
+  personalInfo: [{
     name: 'Dave Postrero',
     title: 'Junior Web & Mobile Developer',
     email: 'postrero63@gmail.com',
     phone: '+63 991 5725 762',
     address: 'Silay City, Negros Occidental, Philippines',
     objective: 'Motivated Developer with hands-on experience building responsive web apps, mobile solutions, and database-driven systems. Adept in PHP/Laravel, React Native, SQL, and modern tools, with a strong foundation in Object-Oriented programming and collaborative developer environments.'
-  },
+  }],
   experience: [
     {
       id: 'exp-1',
