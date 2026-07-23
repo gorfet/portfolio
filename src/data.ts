@@ -105,12 +105,14 @@ export const INITIAL_PROJECTS: Project[] = [
 ];
 
 export const INITIAL_RESUME_DATA: ResumeData = {
-  personalInfo: {
+   personalInfo: {
     name: 'Dave Postrero',
     title: 'Junior Web & Mobile Developer',
-    email: 'postrero63@gmail.com',
+    email: 'kindpsycho1@gmail.com',
     phone: '+63 991 5725 762',
     address: 'Silay City, Negros Occidental, Philippines',
+    linkedin: 'linkedin.com/in/dave-postrero-2840493a8',
+    github: 'github.com/gorfet',
     objective: 'Motivated Developer with hands-on experience building responsive web apps, mobile solutions, and database-driven systems. Adept in PHP/Laravel, React Native, SQL, and modern tools, with a strong foundation in Object-Oriented programming and collaborative developer environments.'
   },
   education: [
@@ -118,6 +120,7 @@ export const INITIAL_RESUME_DATA: ResumeData = {
       id: 'edu-1',
       school: 'STI West Negros University',
       degree: 'Bachelor of Science in Information Technology (BSIT)',
+      duration: 'June 2026',
       details: 'Relevant Coursework: Data Structures & Algorithms, Object-Oriented Programming (Java), Database Management, Full-Stack Web Development, Mobile App Development, Systems Integration, and Quality Assurance.'
     }
   ],
