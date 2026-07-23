@@ -5,15 +5,49 @@
 
 import React, { useState } from 'react';
 import { ResumeData } from '../types';
-import { Download, FileText } from 'lucide-react';
+import { Download, FileText, Edit2, Check, X, Phone, Mail, MapPin, RotateCcw } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 
 interface ResumeEditorProps {
   data: ResumeData;
+  onUpdateData?: (newData: ResumeData) => void;
+  onResetData?: () => void;
 }
 
-export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
+export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data, onUpdateData, onResetData }) => {
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const [isEditingContact, setIsEditingContact] = useState(false);
+  const [contactForm, setContactForm] = useState({
+    name: data.personalInfo.name,
+    phone: data.personalInfo.phone,
+    email: data.personalInfo.email,
+    address: data.personalInfo.address,
+    title: data.personalInfo.title,
+    linkedin: data.personalInfo.linkedin,
+    github: data.personalInfo.github,
+    objective: data.personalInfo.objective,
+  });
+
+  const handleSaveContact = () => {
+    if (onUpdateData) {
+      const updated = {
+        ...data,
+        personalInfo: {
+          ...data.personalInfo,
+          name: contactForm.name,
+          phone: contactForm.phone,
+          email: contactForm.email,
+          address: contactForm.address,
+          title: contactForm.title,
+          linkedin: contactForm.linkedin,
+          github: contactForm.github,
+          objective: contactForm.objective,
+        },
+      };
+      onUpdateData(updated);
+    }
+    setIsEditingContact(false);
+  };
 
   // Modern jsPDF PDF Export (exact design reproduction, multi-page aware and beautiful)
   const generatePdf = async () => {
@@ -115,6 +149,10 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
       const contactInfo = `${data.personalInfo.email}  |  ${data.personalInfo.phone}  |  Silay, Philippines`;
       doc.text(contactInfo, marginX, y);
       y += 5;
+
+      const socialInfo = `${data.personalInfo.linkedin}  |  ${data.personalInfo.github}`;
+      doc.text(socialInfo, marginX, y);
+      y += 7;
 
       drawDivider();
 
@@ -258,7 +296,39 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
           </p>
         </div>
 
-        <div className="flex items-center gap-2 w-full sm:w-auto">
+        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+          {onResetData && (
+            <button
+              onClick={onResetData}
+              className="flex items-center gap-1.5 px-3 py-2.5 bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 text-xs font-bold rounded-xl transition-colors cursor-pointer justify-center"
+              title="Reset resume data to original data.ts file defaults"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span className="hidden md:inline">Reset to data.ts</span>
+            </button>
+          )}
+
+          <button
+            onClick={() => {
+              setContactForm({
+                name: data.personalInfo.name,
+                phone: data.personalInfo.phone,
+                email: data.personalInfo.email,
+                address: data.personalInfo.address,
+                title: data.personalInfo.title,
+                linkedin: data.personalInfo.linkedin,
+                github: data.personalInfo.github,
+                objective: data.personalInfo.objective,
+              });
+              setIsEditingContact(!isEditingContact);
+            }}
+            className="flex items-center gap-1.5 px-3 py-2.5 bg-amber-500/10 dark:bg-amber-500/20 hover:bg-amber-500/20 dark:hover:bg-amber-500/30 text-amber-900 dark:text-amber-200 text-xs font-bold rounded-xl transition-colors cursor-pointer justify-center border border-amber-300 dark:border-amber-700"
+            title="Edit Phone Number & Personal Info"
+          >
+            <Edit2 className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+            <span>Edit Info</span>
+          </button>
+
           <button
             onClick={generatePdf}
             disabled={isGeneratingPdf}
@@ -269,6 +339,141 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
           </button>
         </div>
       </div>
+
+      {/* Inline Editor Panel when editing is active */}
+      {isEditingContact && (
+        <div className="p-5 bg-amber-50 dark:bg-amber-950/40 border-b border-amber-200 dark:border-amber-900/60 text-xs space-y-4 animate-fade-in">
+          <div className="flex items-center justify-between border-b border-amber-200 dark:border-amber-900/60 pb-2">
+            <h4 className="font-bold text-amber-950 dark:text-amber-100 text-sm flex items-center gap-2">
+              <Edit2 className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+              Edit Resume Details (Updates live on preview & PDF)
+            </h4>
+            <button 
+              onClick={() => setIsEditingContact(false)}
+              className="p-1 text-amber-700 dark:text-amber-400 hover:text-amber-900 rounded"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+            <div>
+              <label className="block text-[11px] font-bold text-amber-900 dark:text-amber-300 mb-1">
+                Full Name
+              </label>
+              <input
+                type="text"
+                value={contactForm.name}
+                onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                className="w-full px-2.5 py-1.5 bg-white dark:bg-zinc-900 border border-amber-300 dark:border-amber-800 rounded text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-amber-500 font-medium"
+              />
+            </div>
+
+            <div>
+              <label className="block text-[11px] font-bold text-amber-900 dark:text-amber-300 mb-1">
+                Phone Number
+              </label>
+              <input
+                type="text"
+                value={contactForm.phone}
+                onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
+                className="w-full px-2.5 py-1.5 bg-white dark:bg-zinc-900 border border-amber-300 dark:border-amber-800 rounded text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-amber-500 font-mono"
+                placeholder="+63 9xx xxx xxxx"
+              />
+            </div>
+
+            <div>
+              <label className="block text-[11px] font-bold text-amber-900 dark:text-amber-300 mb-1">
+                Email Address
+              </label>
+              <input
+                type="email"
+                value={contactForm.email}
+                onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                className="w-full px-2.5 py-1.5 bg-white dark:bg-zinc-900 border border-amber-300 dark:border-amber-800 rounded text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-amber-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-[11px] font-bold text-amber-900 dark:text-amber-300 mb-1">
+                Job Title
+              </label>
+              <input
+                type="text"
+                value={contactForm.title}
+                onChange={(e) => setContactForm({ ...contactForm, title: e.target.value })}
+                className="w-full px-2.5 py-1.5 bg-white dark:bg-zinc-900 border border-amber-300 dark:border-amber-800 rounded text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-amber-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-[11px] font-bold text-amber-900 dark:text-amber-300 mb-1">
+                Location / Address
+              </label>
+              <input
+                type="text"
+                value={contactForm.address}
+                onChange={(e) => setContactForm({ ...contactForm, address: e.target.value })}
+                className="w-full px-2.5 py-1.5 bg-white dark:bg-zinc-900 border border-amber-300 dark:border-amber-800 rounded text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-amber-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-[11px] font-bold text-amber-900 dark:text-amber-300 mb-1">
+                LinkedIn Profile / Handle
+              </label>
+              <input
+                type="text"
+                value={contactForm.linkedin}
+                onChange={(e) => setContactForm({ ...contactForm, linkedin: e.target.value })}
+                className="w-full px-2.5 py-1.5 bg-white dark:bg-zinc-900 border border-amber-300 dark:border-amber-800 rounded text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-amber-500 font-mono"
+              />
+            </div>
+
+            <div className="sm:col-span-2">
+              <label className="block text-[11px] font-bold text-amber-900 dark:text-amber-300 mb-1">
+                GitHub Profile / Link
+              </label>
+              <input
+                type="text"
+                value={contactForm.github}
+                onChange={(e) => setContactForm({ ...contactForm, github: e.target.value })}
+                className="w-full px-2.5 py-1.5 bg-white dark:bg-zinc-900 border border-amber-300 dark:border-amber-800 rounded text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-amber-500 font-mono"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-[11px] font-bold text-amber-900 dark:text-amber-300 mb-1">
+              Professional Summary / Objective
+            </label>
+            <textarea
+              rows={2}
+              value={contactForm.objective}
+              onChange={(e) => setContactForm({ ...contactForm, objective: e.target.value })}
+              className="w-full px-2.5 py-1.5 bg-white dark:bg-zinc-900 border border-amber-300 dark:border-amber-800 rounded text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-amber-500 leading-relaxed"
+            />
+          </div>
+
+          <div className="flex justify-end gap-2 pt-1 border-t border-amber-200/60 dark:border-amber-900/60">
+            <button
+              type="button"
+              onClick={() => setIsEditingContact(false)}
+              className="px-3 py-1.5 bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 rounded-lg text-xs font-bold transition-colors cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={handleSaveContact}
+              className="px-5 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-bold transition-colors cursor-pointer flex items-center gap-1.5 shadow-xs"
+            >
+              <Check className="w-3.5 h-3.5" />
+              Save Resume Details
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Beautiful layout simulating printed letterhead */}
       <div className="p-6 md:p-8 bg-zinc-100/50 dark:bg-zinc-950/40 flex justify-center border-t border-zinc-200 dark:border-zinc-800">
@@ -359,6 +564,9 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
                       <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
                         {edu.degree}
                       </h4>
+                      <span className="text-xs text-zinc-500 font-mono">
+                        {edu.duration}
+                      </span>
                     </div>
                     <h5 className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1.5">
                       {edu.school}
