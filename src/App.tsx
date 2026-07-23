@@ -397,10 +397,9 @@ export default function App() {
               {/* Micro stats grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 bg-zinc-50 dark:bg-zinc-950/60 border border-zinc-200/80 dark:border-zinc-800 rounded-lg mb-6 text-center">
                 {[
-                  { title: 'Degree', value: 'BSIT Grad 2026' },
                   { title: 'Core Framework', value: 'PHP & Laravel' },
                   { title: 'Mobile Stack', value: 'React Native' },
-                  { title: 'Deployed Apps', value: '6+ Codebases' }
+                  { title: 'Built Apps', value: '6+ Codebases' }
                 ].map((card, idx) => (
                   <div key={idx}>
                     <div className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">{card.title}</div>
@@ -415,7 +414,7 @@ export default function App() {
                   href="#projects"
                   className="px-5 py-2.5 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-bold text-xs rounded hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors flex items-center gap-1.5"
                 >
-                  Explore Deployed Projects
+                  Explore Projects
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
                 <a
