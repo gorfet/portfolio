@@ -308,7 +308,7 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data, onUpdateData, 
             </button>
           )}
 
-          <button
+          { /*<button
             onClick={() => {
               setContactForm({
                 name: data.personalInfo.name,
@@ -326,8 +326,8 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data, onUpdateData, 
             title="Edit Phone Number & Personal Info"
           >
             <Edit2 className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-            { /*<span>Edit Info</span>*/ }
-          </button>
+            <span>Edit Info</span>
+          </button> */ }
 
           <button
             onClick={generatePdf}
