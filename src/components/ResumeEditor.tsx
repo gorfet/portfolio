@@ -474,14 +474,6 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data, onUpdateData, 
               <div>📍 {data.personalInfo.address}</div>
               <div>📧 {data.personalInfo.email}</div>
               <div>📞 +63 991 5725 762</div>
-              <div className="flex flex-wrap md:justify-end gap-2 mt-1">
-                <span className="bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-2 py-0.5 rounded font-mono text-[10px]">
-                  {data.personalInfo.linkedin}
-                </span>
-                <span className="bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-2 py-0.5 rounded font-mono text-[10px]">
-                  {data.personalInfo.github}
-                </span>
-              </div>
             </div>
           </div>
 
