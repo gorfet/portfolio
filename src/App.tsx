@@ -512,7 +512,7 @@ export default function App() {
                   Timeline
                 </span>
                 <h3 className="font-serif text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-100">
-                  Work Experience & Academic Education
+                  Work Experience
                 </h3>
               </div>
 
