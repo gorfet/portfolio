@@ -418,29 +418,7 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data, onUpdateData, 
               />
             </div>
 
-            <div>
-              <label className="block text-[11px] font-bold text-amber-900 dark:text-amber-300 mb-1">
-                LinkedIn Profile / Handle
-              </label>
-              <input
-                type="text"
-                value={contactForm.linkedin}
-                onChange={(e) => setContactForm({ ...contactForm, linkedin: e.target.value })}
-                className="w-full px-2.5 py-1.5 bg-white dark:bg-zinc-900 border border-amber-300 dark:border-amber-800 rounded text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-amber-500 font-mono"
-              />
-            </div>
-
-            <div className="sm:col-span-2">
-              <label className="block text-[11px] font-bold text-amber-900 dark:text-amber-300 mb-1">
-                GitHub Profile / Link
-              </label>
-              <input
-                type="text"
-                value={contactForm.github}
-                onChange={(e) => setContactForm({ ...contactForm, github: e.target.value })}
-                className="w-full px-2.5 py-1.5 bg-white dark:bg-zinc-900 border border-amber-300 dark:border-amber-800 rounded text-xs text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-amber-500 font-mono"
-              />
-            </div>
+           
           </div>
 
           <div>
