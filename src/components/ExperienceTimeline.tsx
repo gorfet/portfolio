@@ -133,12 +133,6 @@ export const ExperienceTimeline: React.FC = () => {
                     STI West Negros University
                   </p>
                 </div>
-                <div>
-                  <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5" />
-                    Graduating 2026
-                  </span>
-                </div>
               </div>
 
               <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
