@@ -363,9 +363,6 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
                       <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
                         {edu.degree}
                       </h4>
-                      <span className="text-xs text-zinc-500 font-mono">
-                        {edu.duration}
-                      </span>
                     </div>
                     <h5 className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1.5">
                       {edu.school}
