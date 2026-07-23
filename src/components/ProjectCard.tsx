@@ -17,105 +17,100 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onViewDetails
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'web':
-        return <Monitor className="w-5 h-5 text-indigo-500" />;
+        return <Monitor className="w-3.5 h-3.5" />;
       case 'mobile':
-        return <Smartphone className="w-5 h-5 text-emerald-500" />;
+        return <Smartphone className="w-3.5 h-3.5" />;
       case 'desktop':
-        return <Cpu className="w-5 h-5 text-amber-500" />;
+        return <Cpu className="w-3.5 h-3.5" />;
       case 'ai-studio':
-        return <Sparkles className="w-5 h-5 text-violet-500" />;
+        return <Sparkles className="w-3.5 h-3.5 text-amber-500" />;
       default:
-        return <Monitor className="w-5 h-5 text-gray-500" />;
+        return <Monitor className="w-3.5 h-3.5" />;
     }
   };
 
-  const getGradient = (category: string) => {
+  const getCategoryLabel = (category: string) => {
     switch (category) {
-      case 'web':
-        return 'from-blue-500 to-indigo-600';
-      case 'mobile':
-        return 'from-emerald-400 to-teal-600';
-      case 'desktop':
-        return 'from-amber-400 to-orange-500';
-      case 'ai-studio':
-        return 'from-violet-500 to-fuchsia-600';
-      default:
-        return 'from-gray-500 to-slate-600';
+      case 'web': return 'Web Development';
+      case 'mobile': return 'Mobile Applications';
+      case 'desktop': return 'Desktop Systems';
+      case 'ai-studio': return 'Google AI Studio';
+      default: return category;
     }
   };
 
   return (
-    <motion.div
+    <motion.article
       layout
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.3 }}
-      className="bg-white dark:bg-zinc-900 rounded-xl overflow-hidden border border-zinc-100 dark:border-zinc-800 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full"
+      exit={{ opacity: 0, scale: 0.98 }}
+      transition={{ duration: 0.25 }}
+      className="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-xs hover:border-zinc-400 dark:hover:border-zinc-700 transition-all duration-200 flex flex-col h-full overflow-hidden group"
       id={`project-card-${project.id}`}
     >
-      {/* Card Header with Icon / Gradient */}
-      <div className={`h-36 bg-gradient-to-br ${getGradient(project.category)} relative flex items-center justify-center overflow-hidden p-6`}>
-        {/* Abstract background circles */}
-        <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-white/10 rounded-full blur-xl" />
-        <div className="absolute -left-6 -top-6 w-20 h-20 bg-black/10 rounded-full blur-lg" />
-        
-        <span className="text-6xl select-none z-10 transform hover:scale-110 transition-transform duration-300">
+      {/* Featured Banner / Media Area */}
+      <div className="h-36 bg-zinc-100 dark:bg-zinc-800/80 border-b border-zinc-200 dark:border-zinc-800 relative flex items-center justify-center p-6 group-hover:bg-zinc-200/50 dark:group-hover:bg-zinc-800 transition-colors">
+        <span className="text-5xl select-none transform group-hover:scale-105 transition-transform duration-300">
           {project.icon}
         </span>
         
+        {/* Category Taxonomy Badge */}
+        <div className="absolute top-3 left-3 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-xs flex items-center gap-1.5">
+          {getCategoryIcon(project.category)}
+          <span>{getCategoryLabel(project.category)}</span>
+        </div>
+
         {project.category === 'ai-studio' && (
-          <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-md text-white text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/20">
-            <Sparkles className="w-3 h-3 text-yellow-300 fill-yellow-300 animate-pulse" />
-            AI Studio Spotlight
+          <div className="absolute top-3 right-3 bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border border-amber-300 dark:border-amber-700 flex items-center gap-1">
+            <Sparkles className="w-3 h-3 text-amber-600 dark:text-amber-400" />
+            AI App
           </div>
         )}
       </div>
 
-      {/* Card Content */}
-      <div className="p-5 flex-1 flex flex-col justify-between">
+      {/* Entry Body */}
+      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            {getCategoryIcon(project.category)}
-            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
-              {project.category === 'ai-studio' ? 'Google AI Studio App' : project.category}
-            </span>
+          {/* Card Meta Header */}
+          <div className="text-[11px] text-zinc-400 dark:text-zinc-500 font-sans mb-1.5 flex items-center gap-2">
+            <span className="font-semibold text-zinc-700 dark:text-zinc-300">Software Project</span>
+            <span>•</span>
+            <time className="font-mono">{project.duration || '2026'}</time>
           </div>
           
-          <h3 className="text-lg font-bold text-zinc-800 dark:text-zinc-100 line-clamp-1 mb-2">
+          {/* Title in Editorial Serif Style */}
+          <h3 className="font-serif text-lg font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors line-clamp-1 mb-2 leading-snug">
             {project.title}
           </h3>
           
-          <p className="text-zinc-600 dark:text-zinc-400 text-sm line-clamp-3 leading-relaxed mb-4">
+          {/* Excerpt */}
+          <p className="text-zinc-600 dark:text-zinc-400 text-xs line-clamp-3 leading-relaxed mb-4">
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-1.5 mb-4">
+          {/* Tags Cloud */}
+          <div className="flex flex-wrap gap-1.5">
             {project.tags.map((tag) => (
               <span 
                 key={tag} 
-                className="px-2 py-0.5 bg-zinc-50 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 rounded text-[11px] font-medium border border-zinc-100 dark:border-zinc-700"
+                className="px-2 py-0.5 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 rounded text-[10px] font-mono border border-zinc-200/80 dark:border-zinc-700/80"
               >
-                {tag}
+                #{tag}
               </span>
             ))}
           </div>
         </div>
 
-        <div className="pt-3 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between mt-auto">
-          {project.duration && (
-            <span className="text-xs text-zinc-400 dark:text-zinc-500 font-mono">
-              {project.duration}
-            </span>
-          )}
-
+        {/* Card Entry Footer / Actions */}
+        <div className="pt-3 border-t border-zinc-200/70 dark:border-zinc-800 flex items-center justify-between mt-auto text-xs">
           <div className="flex items-center gap-2">
             {project.githubUrl && project.githubUrl !== '#' && (
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="View Source Code"
+                title="View Source Repository"
                 className="p-1.5 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors"
               >
                 <Github className="w-4 h-4" />
@@ -127,24 +122,24 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onViewDetails
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Launch Live Application"
+                title="Open Live Preview"
                 className="p-1.5 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors"
               >
                 <ExternalLink className="w-4 h-4" />
               </a>
             )}
-
-            {onViewDetails && (
-              <button
-                onClick={() => onViewDetails(project)}
-                className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors cursor-pointer"
-              >
-                Details &rarr;
-              </button>
-            )}
           </div>
+
+          {onViewDetails && (
+            <button
+              onClick={() => onViewDetails(project)}
+              className="font-bold text-zinc-900 dark:text-zinc-100 hover:underline transition-all cursor-pointer flex items-center gap-1"
+            >
+              View Details &rarr;
+            </button>
+          )}
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 };

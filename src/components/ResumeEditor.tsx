@@ -61,7 +61,7 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
 
       const drawDivider = () => {
         newPageIfNeeded(6);
-        doc.setDrawColor(99, 102, 241); // Indigo color accents
+        doc.setDrawColor(113, 113, 122); // Neutral zinc divider
         doc.setLineWidth(0.4);
         doc.line(marginX, y, pageWidth - marginX, y);
         y += 5;
@@ -79,8 +79,8 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
       const sectionHeader = (title: string) => {
         newPageIfNeeded(15);
         y += 4;
-        fontBold(12);
-        doc.setTextColor(79, 70, 229); // Accent Indigo color
+        fontBold(11);
+        doc.setTextColor(24, 24, 27); // Zinc accent color
         doc.text(title.toUpperCase(), marginX, y);
         y += 4;
         drawHeaderDivider();
@@ -246,16 +246,14 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
     } finally {
       setIsGeneratingPdf(false);
     }
-  };
-
-  return (
-    <div className="bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-xl overflow-hidden shadow-sm animate-fade-in" id="resume-builder">
+  };  return (
+    <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-xs animate-fade-in" id="resume-builder">
       {/* Header controls */}
-      <div className="p-5 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="p-5 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <FileText className="w-5 h-5 text-indigo-500" />
-            <h2 className="text-lg font-bold text-zinc-800 dark:text-zinc-100">
+            <FileText className="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
+            <h2 className="text-base font-bold text-zinc-900 dark:text-zinc-100">
               Dave Postrero's Professional Resume
             </h2>
           </div>
@@ -268,7 +266,7 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
           <button
             onClick={generatePdf}
             disabled={isGeneratingPdf}
-            className="flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg shadow-sm disabled:opacity-50 transition-colors cursor-pointer w-full sm:w-auto justify-center"
+            className="flex items-center gap-1.5 px-4 py-2.5 bg-zinc-900 dark:bg-zinc-100 hover:bg-zinc-800 dark:hover:bg-zinc-200 text-white dark:text-zinc-900 text-xs font-bold rounded-xl shadow-xs disabled:opacity-50 transition-colors cursor-pointer w-full sm:w-auto justify-center"
           >
             <Download className="w-3.5 h-3.5" />
             {isGeneratingPdf ? 'Compiling PDF...' : 'Download Resume PDF'}
@@ -277,18 +275,18 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
       </div>
 
       {/* Beautiful layout simulating printed letterhead */}
-      <div className="p-6 md:p-8 bg-zinc-100/50 dark:bg-zinc-950/40 flex justify-center border-t border-zinc-100 dark:border-zinc-800">
-        <div className="w-full max-w-[210mm] min-h-[297mm] bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 md:p-12 shadow-sm rounded-lg text-zinc-800 dark:text-zinc-200 relative">
+      <div className="p-6 md:p-8 bg-zinc-100/50 dark:bg-zinc-950/40 flex justify-center border-t border-zinc-200 dark:border-zinc-800">
+        <div className="w-full max-w-[210mm] min-h-[297mm] bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 md:p-12 shadow-xs rounded-xl text-zinc-800 dark:text-zinc-200 relative">
           {/* Top accent bar */}
-          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-indigo-500 to-indigo-600" />
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-zinc-900 dark:bg-zinc-100" />
           
           {/* Resume Heading */}
-          <div className="mb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-zinc-100 dark:border-zinc-800 pb-6">
+          <div className="mb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-zinc-200 dark:border-zinc-800 pb-6">
             <div>
-              <h1 className="text-3xl font-black text-zinc-900 dark:text-white tracking-tight uppercase">
+              <h1 className="text-3xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight uppercase">
                 {data.personalInfo.name}
               </h1>
-              <h2 className="text-base font-bold text-indigo-600 dark:text-indigo-400 mt-1">
+              <h2 className="text-sm font-bold text-zinc-700 dark:text-zinc-300 mt-1">
                 {data.personalInfo.title}
               </h2>
             </div>
@@ -298,10 +296,10 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
               <div>📧 {data.personalInfo.email}</div>
               <div>📞 {data.personalInfo.phone}</div>
               <div className="flex flex-wrap md:justify-end gap-2 mt-1">
-                <span className="bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-1.5 py-0.5 rounded font-mono text-[10px]">
+                <span className="bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-2 py-0.5 rounded font-mono text-[10px]">
                   {data.personalInfo.linkedin}
                 </span>
-                <span className="bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-1.5 py-0.5 rounded font-mono text-[10px]">
+                <span className="bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-2 py-0.5 rounded font-mono text-[10px]">
                   {data.personalInfo.github}
                 </span>
               </div>
@@ -310,10 +308,10 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
 
           {/* Professional objective summary */}
           <div className="mb-6">
-            <h3 className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mb-2 border-b border-zinc-100 dark:border-zinc-800 pb-1">
+            <h3 className="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest mb-2 border-b border-zinc-200 dark:border-zinc-800 pb-1">
               Professional Summary
             </h3>
-            <p className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-350">
+            <p className="text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
               {data.personalInfo.objective}
             </p>
           </div>
@@ -321,7 +319,7 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
           {/* Experience */}
           {data.experience.length > 0 && (
             <div className="mb-6">
-              <h3 className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mb-3 border-b border-zinc-100 dark:border-zinc-800 pb-1">
+              <h3 className="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest mb-3 border-b border-zinc-200 dark:border-zinc-800 pb-1">
                 Work Experience
               </h3>
               
@@ -329,18 +327,18 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
                 {data.experience.map((exp) => (
                   <div key={exp.id}>
                     <div className="flex justify-between items-baseline mb-1">
-                      <h4 className="text-sm font-bold text-zinc-900 dark:text-white">
+                      <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
                         {exp.role}
                       </h4>
                       <span className="text-xs text-zinc-500 font-mono">
                         {exp.duration}
                       </span>
                     </div>
-                    <h5 className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 mb-2">
+                    <h5 className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-2">
                       {exp.company}
                     </h5>
                     
-                    <ul className="list-disc pl-5 text-sm space-y-1.5 text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                    <ul className="list-disc pl-5 text-xs sm:text-sm space-y-1.5 text-zinc-600 dark:text-zinc-400 leading-relaxed">
                       {exp.bullets.map((bulletText, bIdx) => (
                         <li key={bIdx}>{bulletText}</li>
                       ))}
@@ -354,7 +352,7 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
           {/* Education */}
           {data.education.length > 0 && (
             <div className="mb-6">
-              <h3 className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mb-3 border-b border-zinc-100 dark:border-zinc-800 pb-1">
+              <h3 className="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest mb-3 border-b border-zinc-200 dark:border-zinc-800 pb-1">
                 Education History
               </h3>
               
@@ -362,14 +360,14 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
                 {data.education.map((edu) => (
                   <div key={edu.id}>
                     <div className="flex justify-between items-baseline mb-1">
-                      <h4 className="text-sm font-bold text-zinc-900 dark:text-white">
+                      <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
                         {edu.degree}
                       </h4>
                       <span className="text-xs text-zinc-500 font-mono">
                         {edu.duration}
                       </span>
                     </div>
-                    <h5 className="text-xs font-semibold text-zinc-800 dark:text-zinc-300 mb-1.5">
+                    <h5 className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1.5">
                       {edu.school}
                     </h5>
                     <p className="text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">
@@ -383,7 +381,7 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
 
           {/* Skills */}
           <div className="mb-6">
-            <h3 className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mb-3 border-b border-zinc-100 dark:border-zinc-800 pb-1">
+            <h3 className="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest mb-3 border-b border-zinc-200 dark:border-zinc-800 pb-1">
               Skills & Technology Domains
             </h3>
             
@@ -393,11 +391,11 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
                   <div key={tIdx}>
                     <div className="flex justify-between items-baseline mb-0.5 text-xs">
                       <span className="font-bold text-zinc-800 dark:text-zinc-200">{tech.name}</span>
-                      <span className="text-zinc-400 font-mono">{tech.level}%</span>
+                      <span className="text-zinc-400 font-mono text-[10px]">{tech.level}%</span>
                     </div>
                     <div className="w-full bg-zinc-100 dark:bg-zinc-800 rounded-full h-1">
                       <div 
-                        className="bg-indigo-600 h-1 rounded-full" 
+                        className="bg-zinc-900 dark:bg-zinc-100 h-1 rounded-full" 
                         style={{ width: `${tech.level}%` }}
                       />
                     </div>
@@ -410,7 +408,7 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
 
               <div className="space-y-2">
                 {data.skills.tools.map((cat, catIdx) => (
-                  <div key={catIdx} className="bg-zinc-50 dark:bg-zinc-800/40 p-2 border border-zinc-150 dark:border-zinc-700/50 rounded">
+                  <div key={catIdx} className="bg-zinc-50 dark:bg-zinc-800/40 p-2.5 border border-zinc-200 dark:border-zinc-700/60 rounded-xl">
                     <h5 className="text-xs font-bold text-zinc-800 dark:text-zinc-200 mb-0.5">{cat.name}</h5>
                     <p className="text-[11px] text-zinc-600 dark:text-zinc-400 leading-relaxed">
                       {cat.items.join(', ')}
@@ -424,10 +422,10 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
           {/* Achievements */}
           {data.achievements.length > 0 && (
             <div>
-              <h3 className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mb-3 border-b border-zinc-100 dark:border-zinc-800 pb-1">
+              <h3 className="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest mb-3 border-b border-zinc-200 dark:border-zinc-800 pb-1">
                 Key Achievements
               </h3>
-              <ul className="list-disc pl-5 text-sm space-y-1.5 text-zinc-600 dark:text-zinc-400">
+              <ul className="list-disc pl-5 text-xs sm:text-sm space-y-1.5 text-zinc-600 dark:text-zinc-400">
                 {data.achievements.map((ach, aIdx) => (
                   <li key={aIdx}>{ach}</li>
                 ))}

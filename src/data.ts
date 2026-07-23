@@ -108,7 +108,7 @@ export const INITIAL_RESUME_DATA: ResumeData = {
   personalInfo: {
     name: 'Dave Postrero',
     title: 'Junior Web & Mobile Developer',
-    email: 'postrero63@gmail.com',
+    email: 'Postreroz09@gmail.com',
     phone: '+63 912 345 6789',
     address: 'Silay City, Negros Occidental, Philippines',
     linkedin: 'linkedin.com/in/dave-postrero-2840493a8',
