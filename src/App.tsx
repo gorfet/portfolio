@@ -446,7 +446,6 @@ export default function App() {
                     { id: 'web', label: 'Web Dev' },
                     { id: 'mobile', label: 'Mobile' },
                     { id: 'desktop', label: 'Desktop' },
-                    { id: 'ai-studio', label: 'AI Studio' }
                   ].map((category) => (
                     <button
                       key={category.id}
@@ -540,10 +539,10 @@ export default function App() {
               <div className="border-b border-zinc-200 dark:border-zinc-800 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <h3 className="font-serif text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-                    Get In Touch (Live Direct Contact)
+                    Get In Touch
                   </h3>
                   <p className="text-xs text-zinc-500 mt-1">
-                    Messages are routed live to <strong>Postreroz09@gmail.com</strong> and saved in Dave's portfolio inbox.
+                    Messages are routed live to <strong>kindpsycho1@gmail.com</strong> and saved in Dave's portfolio inbox.
                   </p>
                 </div>
                 <button
@@ -564,7 +563,7 @@ export default function App() {
                     </div>
                     <div>
                       <h4 className="font-bold text-emerald-900 dark:text-emerald-200 text-sm">
-                        Message Live Sent & Saved!
+                        Message Sent & Saved!
                       </h4>
                       <p className="text-xs text-emerald-700 dark:text-emerald-400">
                         Routed directly to <strong>{lastSubmittedMsg.targetEmail}</strong>
@@ -675,7 +674,7 @@ export default function App() {
                     </button>
 
                     <span className="text-[11px] text-zinc-500 font-mono hidden sm:inline">
-                      Direct Email: Postreroz09@gmail.com
+                      Direct Email: kindpsycho1@gmail.com
                     </span>
                   </div>
                 </form>
@@ -754,7 +753,7 @@ export default function App() {
                   { name: 'Web Applications', cat: 'web', count: projects.filter(p => p.category === 'web').length },
                   { name: 'Mobile Applications', cat: 'mobile', count: projects.filter(p => p.category === 'mobile').length },
                   { name: 'Desktop Systems', cat: 'desktop', count: projects.filter(p => p.category === 'desktop').length },
-                  { name: 'Google AI Studio Apps', cat: 'ai-studio', count: projects.filter(p => p.category === 'ai-studio').length },
+                  { name: 'Mobile Apps', cat: 'mobile', count: projects.filter(p => p.category === 'mobile').length },
                 ].map((item) => (
                   <li key={item.cat}>
                     <button
@@ -838,17 +837,6 @@ export default function App() {
             </ul>
           </div>
 
-          <div>
-            <h5 className="font-mono text-xs font-bold text-zinc-300 uppercase tracking-wider mb-2">Connect & Socials</h5>
-            <div className="flex gap-3 mt-2">
-              <a href={`https://${resumeData.personalInfo.github}`} target="_blank" rel="noreferrer" className="p-2 bg-zinc-800 text-zinc-300 hover:text-white rounded">
-                <Github className="w-4 h-4" />
-              </a>
-              <a href={`https://${resumeData.personalInfo.linkedin}`} target="_blank" rel="noreferrer" className="p-2 bg-zinc-800 text-zinc-300 hover:text-white rounded">
-                <Linkedin className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
         </div>
 
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
@@ -1038,7 +1026,7 @@ export default function App() {
                     <Mail className="w-8 h-8 mx-auto text-zinc-300 dark:text-zinc-700" />
                     <p className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">No Messages Yet</p>
                     <p className="text-xs max-w-sm mx-auto text-zinc-500">
-                      Use the "Get In Touch" form on the main page to send a test message live to Dave Postrero!
+                      Use the "Get In Touch" form on the main page to send a message to Dave Postrero!
                     </p>
                   </div>
                 ) : (
@@ -1094,7 +1082,7 @@ export default function App() {
               {/* Footer */}
               <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 flex justify-between items-center text-xs">
                 <span className="text-zinc-500">
-                  Target Recipient: <strong>Postreroz09@gmail.com</strong>
+                  Target Recipient: <strong>kindpsycho1@gmail.com</strong>
                 </span>
                 <button
                   onClick={() => setShowInboxModal(false)}
