@@ -16,8 +16,9 @@ import {
   Code, Layers, Bot, Terminal, Inbox, CheckCircle2, Clock, Trash2, Loader2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import profile from "./profile.jfif";
 
-const DEFAULT_AVATAR = "/profile.jfif"; 
+const DEFAULT_AVATAR = profile; 
 
 export default function App() {
   const [darkMode, setDarkMode] = useState<boolean>(() => {
