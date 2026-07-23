@@ -33,13 +33,40 @@ export default function App() {
     const saved = localStorage.getItem('dave_resume_data');
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        return {
+          ...INITIAL_RESUME_DATA,
+          personalInfo: {
+            ...INITIAL_RESUME_DATA.personalInfo,
+            ...(parsed.personalInfo || {}),
+          },
+        };
       } catch (e) {
         return INITIAL_RESUME_DATA;
       }
     }
     return INITIAL_RESUME_DATA;
   });
+
+    useEffect(() => {
+    const saved = localStorage.getItem('dave_resume_data');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        setResumeData({
+          ...INITIAL_RESUME_DATA,
+          personalInfo: {
+            ...INITIAL_RESUME_DATA.personalInfo,
+            ...(parsed.personalInfo || {}),
+          },
+        });
+      } catch (e) {
+        setResumeData(INITIAL_RESUME_DATA);
+      }
+    } else {
+      setResumeData(INITIAL_RESUME_DATA);
+    }
+  }, [INITIAL_RESUME_DATA]);
 
   const [projects] = useState<Project[]>(INITIAL_PROJECTS);
   const [activeCategory, setActiveCategory] = useState<string>('all');
