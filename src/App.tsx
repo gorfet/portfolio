@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
-const DEFAULT_AVATAR = "profile.jfif"; 
+const DEFAULT_AVATAR = "/profile.jfif"; 
 
 export default function App() {
   const [darkMode, setDarkMode] = useState<boolean>(() => {
