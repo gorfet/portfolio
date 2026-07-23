@@ -178,7 +178,7 @@ export const ExperienceTimeline: React.FC = () => {
           {[
             { title: 'ITSS Internship Pilot', desc: 'Successfully built and piloted Faculty Evaluation System for 400hr internship.' },
             { title: 'Expo Mobile App Release', desc: 'Published Student Habit Tracker app on Expo builds & GitHub repo.' },
-            { title: 'Google AI Studio Apps', desc: 'Engineered SEOPilot & CareerPilot applications using GenAI SDK.' },
+            { title: 'Mobile Apps', desc: 'Engineered SEOPilot & CareerPilot applications.' },
             { title: 'Full-Stack Proficiency', desc: 'Specializing in Laravel PHP backend and React/React Native frontends.' }
           ].map((item, idx) => (
             <div key={idx} className="p-4 rounded-xl bg-zinc-800/80 border border-zinc-700/60 space-y-1">
