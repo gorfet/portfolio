@@ -473,7 +473,7 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data, onUpdateData, 
             <div className="text-xs text-zinc-500 dark:text-zinc-400 text-left md:text-right space-y-1 font-sans">
               <div>📍 {data.personalInfo.address}</div>
               <div>📧 {data.personalInfo.email}</div>
-              <div>📞 {data.personalInfo.phone}</div>
+              <div>📞 +63 991 5725 762</div>
               <div className="flex flex-wrap md:justify-end gap-2 mt-1">
                 <span className="bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-2 py-0.5 rounded font-mono text-[10px]">
                   {data.personalInfo.linkedin}
@@ -491,7 +491,7 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data, onUpdateData, 
               Professional Summary
             </h3>
             <p className="text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-              {data.personalInfo.objective}
+              Motivated Developer with hands-on experience building responsive web apps, mobile solutions, and database-driven systems. Adept in PHP/Laravel, React Native, SQL, and modern tools, with a strong foundation in Object-Oriented programming and collaborative developer environments.
             </p>
           </div>
 
