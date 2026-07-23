@@ -376,7 +376,6 @@ export default function App() {
                 <span>•</span>
                 <span>Developer Overview • <strong>Dave Postrero</strong></span>
                 <span>•</span>
-                <span className="font-mono">Graduating 2026</span>
               </div>
 
               {/* Title in Playfair Serif */}
@@ -392,7 +391,7 @@ export default function App() {
 
               {/* Post Content Excerpt */}
               <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6 font-sans">
-                Graduating Information Technology student at STI West Negros University and Full-Stack Developer. Experienced in building full-stack web platforms with PHP/Laravel, cross-platform mobile apps with React Native & Expo, and custom desktop architectures. Currently serving as Assistant Programmer Intern at ITSS.
+                A Full-Stack Developer. Experienced in building full-stack web platforms with PHP/Laravel, cross-platform mobile apps with React Native & Expo, and custom desktop architectures. Currently serving as Assistant Programmer Intern at ITSS.
               </p>
 
               {/* Micro stats grid */}
@@ -710,7 +709,7 @@ export default function App() {
               </div>
 
               <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">
-                Graduating BSIT student @ STI West Negros University '26 & Assistant Programmer Intern @ ITSS. Skilled in PHP Laravel, React Native, and full-stack software development.
+                Assistant Programmer Intern @ ITSS. Skilled in PHP Laravel, React Native, and full-stack software development.
               </p>
 
               <div className="pt-3 border-t border-zinc-100 dark:border-zinc-800 text-xs font-semibold space-y-1">
