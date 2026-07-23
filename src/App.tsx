@@ -216,7 +216,7 @@ export default function App() {
           subject: contactForm.subject,
           message: contactForm.message,
           mailtoUrl: data.mailtoUrl,
-          targetEmail: data.targetEmail || 'kindpsycho1@gmail.com',
+          targetEmail: data.targetEmail || 'postrero63@gmail.com',
         });
         setContactForm({ name: '', email: '', subject: 'Opportunity / Job Offer', message: '' });
         fetchInboxMessages();
@@ -569,7 +569,7 @@ export default function App() {
                     Get In Touch
                   </h3>
                   <p className="text-xs text-zinc-500 mt-1">
-                    Messages are routed live to <strong>kindpsycho1@gmail.com</strong> and saved in Dave's portfolio inbox.
+                    Messages are routed live to <strong>postrero63@gmail.com</strong> and saved in Dave's portfolio inbox.
                   </p>
                 </div>
                 <button
@@ -701,7 +701,7 @@ export default function App() {
                     </button>
 
                     <span className="text-[11px] text-zinc-500 font-mono hidden sm:inline">
-                      Direct Email: kindpsycho1@gmail.com
+                      Direct Email: postrero63@gmail.com
                     </span>
                   </div>
                 </form>
@@ -1109,7 +1109,7 @@ export default function App() {
               {/* Footer */}
               <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 flex justify-between items-center text-xs">
                 <span className="text-zinc-500">
-                  Target Recipient: <strong>kindpsycho1@gmail.com</strong>
+                  Target Recipient: <strong>postrero63@gmail.com</strong>
                 </span>
                 <button
                   onClick={() => setShowInboxModal(false)}
