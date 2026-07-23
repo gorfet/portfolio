@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 const PORT = 3000;
-const DAVE_EMAIL = "kindpsycho1@gmail.com";
+const DAVE_EMAIL = "postrero63@gmail.com";
 
 app.use(express.json());
 
@@ -64,7 +64,7 @@ Candidate Details:
 - Current Role: Junior Web & Mobile Developer
 - Education: Bachelor of Science in Information Technology (BSIT) at STI West Negros University (2022 - 2026)
 - Location: Silay City, Negros Occidental, Philippines (GMT+8)
-- Email: kindpsycho1@gmail.com
+- Email: postrero63@gmail.com
 - Phone: +63 991 5725 762
 - LinkedIn: linkedin.com/in/dave-postrero-2840493a8
 - GitHub: github.com/gorfet
@@ -96,7 +96,7 @@ Dave is a proactive problem solver with a passion for clean code, responsive use
 Guidance for responses:
 - Be warm, helpful, professional, and concise (2-4 paragraphs or clear bullet points).
 - Provide accurate information directly based on Dave's credentials above.
-- If asked about hiring or contacting Dave, encourage emailing kindpsycho1@gmail.com or connecting on LinkedIn.
+- If asked about hiring or contacting Dave, encourage emailing postrero63@gmail.com or connecting on LinkedIn.
 `;
 
 // LIVE CONTACT MESSAGING API ENDPOINTS
