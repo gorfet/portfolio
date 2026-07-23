@@ -10,8 +10,8 @@ export const INITIAL_PROJECTS: Project[] = [
     id: 'seopilot',
     title: 'SEOPilot AI Assistant',
     description: 'An AI-driven SEO analysis platform that crawls websites, performs real-time semantic keyword research, analyzes page performance, and provides automated, model-guided recommendations to scale search rankings.',
-    category: 'ai-studio',
-    tags: ['Google GenAI SDK', 'React 19', 'Vite', 'Tailwind CSS', 'Node.js'],
+    category: 'SEO',
+    tags: ['React 19', 'Vite', 'Tailwind CSS', 'Node.js'],
     demoUrl: '#',
     githubUrl: 'https://github.com/gorfet',
     duration: 'Recent',
@@ -22,8 +22,8 @@ export const INITIAL_PROJECTS: Project[] = [
     id: 'careerpilot',
     title: 'CareerPilot AI Coach',
     description: 'A comprehensive, model-grounded career growth system featuring an interactive resume refiner, automated cover letter tailored writer, mock interview AI simulators, and structured path trackers.',
-    category: 'ai-studio',
-    tags: ['Google GenAI SDK', 'React', 'TypeScript', 'jsPDF', 'Vite'],
+    category: 'career',
+    tags: ['React', 'TypeScript', 'jsPDF', 'Vite'],
     demoUrl: '#',
     githubUrl: 'https://github.com/gorfet',
     duration: 'Recent',
@@ -36,7 +36,7 @@ export const INITIAL_PROJECTS: Project[] = [
     description: 'Developed a robust web-based faculty evaluation platform that enables students to evaluate instructors securely, while providing administrators with real-time analytics, dynamic reporting, and performance tracking.',
     category: 'web',
     tags: ['Laravel', 'PHP', 'Bootstrap', 'MySQL', 'JavaScript'],
-    demoUrl: '#',
+    demoUrl: 'http://169.58.51.70/ievaluated',
     githubUrl: '#',
     duration: '3 months',
     icon: '📋',
@@ -91,12 +91,12 @@ export const INITIAL_PROJECTS: Project[] = [
     featured: false
   },
   {
-    id: 'google-ai-portfolio',
+    id: 'portfolio',
     title: 'Interactive Resume & Dev Portfolio',
     description: 'This current application! A professional, modern portfolio and real-time resume customizer deployed in Google AI Studio, featuring dynamic PDF generation, live edit preview, and state persistence.',
-    category: 'ai-studio',
+    category: 'portfolio',
     tags: ['React 19', 'Vite', 'TypeScript', 'Tailwind v4', 'jsPDF', 'Motion'],
-    demoUrl: 'https://ai.studio/build',
+    demoUrl: 'https://portfolio-8jds-sage.vercel.app/',
     githubUrl: 'https://github.com/gorfet',
     duration: 'Recent',
     icon: '⚡',
@@ -111,19 +111,8 @@ export const INITIAL_RESUME_DATA: ResumeData = {
     email: 'Postreroz09@gmail.com',
     phone: '+63 912 345 6789',
     address: 'Silay City, Negros Occidental, Philippines',
-    linkedin: 'linkedin.com/in/dave-postrero-2840493a8',
-    github: 'github.com/gorfet',
-    objective: 'Motivated BSIT student and aspiring Developer with hands-on experience building responsive web apps, mobile solutions, and database-driven systems. Adept in PHP/Laravel, React Native, SQL, and modern tools, with a strong foundation in Object-Oriented programming and collaborative developer environments.'
+    objective: 'Motivated Developer with hands-on experience building responsive web apps, mobile solutions, and database-driven systems. Adept in PHP/Laravel, React Native, SQL, and modern tools, with a strong foundation in Object-Oriented programming and collaborative developer environments.'
   },
-  education: [
-    {
-      id: 'edu-1',
-      school: 'STI West Negros University',
-      degree: 'Bachelor of Science in Information Technology (BSIT)',
-      duration: 'Graduating 2026',
-      details: 'Relevant Coursework: Data Structures & Algorithms, Object-Oriented Programming (Java), Database Management, Full-Stack Web Development, Mobile App Development, Systems Integration, and Quality Assurance.'
-    }
-  ],
   experience: [
     {
       id: 'exp-1',
@@ -153,7 +142,7 @@ export const INITIAL_RESUME_DATA: ResumeData = {
   },
   achievements: [
     'Successfully developed and piloted the Faculty Evaluation System at ITSS.',
-    'Developed and deployed SEOPilot AI Assistant & CareerPilot AI Coach in Google AI Studio.',
+    'Developed and deployed SEOPilot AI Assistant & CareerPilot AI Coach.',
     'Completed a comprehensive 400-hour Industry Internship with outstanding evaluation.',
     'Built and published a mobile Student Habit Tracker on GitHub & Expo builds.'
   ]
