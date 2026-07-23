@@ -116,10 +116,6 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({ data }) => {
       doc.text(contactInfo, marginX, y);
       y += 5;
 
-      const socialInfo = `${data.personalInfo.linkedin}  |  ${data.personalInfo.github}`;
-      doc.text(socialInfo, marginX, y);
-      y += 7;
-
       drawDivider();
 
       // 2. Objective
